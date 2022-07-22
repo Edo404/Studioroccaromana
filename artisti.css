@@ -71,6 +71,8 @@ html {
 }
 
 .image-08 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');   */
     flex: 1;
 }
 
