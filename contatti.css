@@ -15,6 +15,13 @@ body {
 	background: #fff;
 }
 
+#nav
+{
+    
+    background-color: #fff;
+    z-index: 999;
+}
+
 .contact-form {
     position: absolute;
 	width: 75vw;

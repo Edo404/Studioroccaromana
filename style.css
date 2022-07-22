@@ -11,6 +11,9 @@
 {
     margin:auto;
     padding-right:15px;
+    height: 140px;
+    background-color: #fff;
+    z-index: 999;
 }
 
 
@@ -133,6 +136,12 @@ nav
     padding:10px;
     margin:0;
 }
+
+.contenitore
+{
+    height: 175px;
+}
+
 
 }
 
