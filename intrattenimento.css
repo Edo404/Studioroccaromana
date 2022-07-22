@@ -57,7 +57,7 @@ html {
     height: 23em;
     background-color: rgba(41, 130, 0, 0.40);
     z-index: -1;
-    margin-top: -550px;
+    margin-top: -200px;
     position: fixed;
 }
 
