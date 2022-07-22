@@ -1,0 +1,25 @@
+.container{
+    padding-top: 2em;
+}
+
+.image img{
+  height: 50em;
+  width: 42em;
+
+}
+
+.grid{
+  display:flex;
+  padding:100px;
+}
+.text{
+  padding:5px 100px 50px;
+  text-align: justify;
+}
+
+.text1{
+    text-align: justify;
+    margin-top: -130px;
+    padding-left: 100px;
+    padding-right: 200px;
+}

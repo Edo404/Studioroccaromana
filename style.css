@@ -1,0 +1,397 @@
+@import url('https://fonts.googleapis.com/css2?family=Trirong:wght@300&display=swap');
+* {
+    padding:0px;
+    margin:0px;
+    font-family: 'Trirong', sans-serif;
+}
+
+/* End Global Rules */
+
+.contenitore
+{
+    margin:auto;
+    padding-right:15px;
+}
+
+
+/* Start Style NavBar  */
+
+nav
+{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+ul
+{
+    list-style: none;
+}
+
+li
+{
+
+    float:left;
+    padding:20px;
+    font-size:18px;
+}
+
+a
+{
+    color:#000;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a:hover
+{
+    color:#202020;
+}
+
+#logo
+{
+     margin:20px 0 20px 20px;
+    font-size:50px;
+    cursor:pointer;
+    color:#e4e6e7;
+    float:left;
+    height:70px;
+    display:block;
+}
+
+.links
+{
+    float:right;
+    padding:18px;
+}
+
+#menu-icon
+{
+    margin-top: -20%;
+    margin-left: 20%;
+    display:hidden;
+    width:120px;
+    height:120px;
+    z-index: 9;
+}
+
+@media (max-width: 600px)
+{
+#menu-icon
+{
+    display: none;
+}
+}
+
+@media (max-width: 420px)
+{
+#menu-icon
+{
+    display: none;
+}
+.links
+{
+    padding:10px 10px;
+
+}  
+
+.links ul
+{
+
+    /* display:none; */
+    position:absolute;
+    padding:20px;
+    /* top:76px; */
+    right:80px;
+    /* width:40%; */
+    margin-left: 50px;
+
+
+} 
+
+.links:hover ul
+{
+    display:block;
+
+} 
+nav
+{
+    width: 100%;
+    height: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.links li
+{
+    text-align:center;
+    width:100%;
+    padding:10px;
+    margin:0;
+}
+
+}
+
+/*rectangles*/
+.background{
+    
+    height: 100vh;
+    text-align: center;
+}
+
+
+
+#red-rect {
+	width: 20em;
+	height: 100%;
+	background: #FF7979;
+    position: fixed;
+    display: inline-block;
+    margin-left: -470px;
+
+
+}
+
+#green-rect {
+	width: 20em;
+	height: 100%;
+	background: rgba(41, 130, 0, 0.40);
+    position: fixed;
+    display: inline-block;
+    margin-left: 150px;
+}
+
+.mobile-background{
+    display: none;
+}
+
+#mobile-red-rect {
+    display: none;
+}
+
+#mobile-green-rect {
+    display: none;
+}
+
+
+@media (max-width: 1000px)
+{
+    .background{
+        display: none;
+    }
+
+    #red-rect {
+        display: none;
+    }
+    
+    #green-rect {
+        display: none;
+    }
+
+    .mobile-background{
+        display: block;
+        height: 100vh;
+        text-align: center;
+    }
+    
+    #mobile-red-rect {
+        display: block;
+        position: fixed;
+        background: #FF7979;
+        height: 5em;
+        width: 100%;
+        margin-top: 300px;
+    }
+    
+    #mobile-green-rect {
+        display: block;
+        position: fixed;
+        background: rgba(41, 130, 0, 0.40);
+        height: 5em;
+        width: 100%;
+        margin-top: 620px;
+    }
+}
+
+/*images */
+.art-intr{
+    text-align: center;
+    margin-top: -600px;
+    z-index: 1;
+}
+
+.artisti{
+    display: inline-block;
+    width: 450px;
+    position: fixed;
+    margin-left: -530px;
+
+}
+
+.intrattenimento{
+    display: inline-block;
+    position: fixed;
+    width: 450px;
+    margin-left: 5.5em;
+}
+
+.mobile-art-intr{
+    display: none;
+}
+
+.mobile-artisti{
+    display: none;
+
+}
+
+.mobile-intrattenimento{
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .mobile-art-intr{
+        display: block;
+        text-align: center;
+        margin-top: -430px;
+        z-index: 1;
+    }
+
+    .mobile-artisti{
+        display: inline-block;
+        width: 300px;
+        position: fixed;
+        margin-left: -150px;
+        margin-top: -220px;    
+    }
+    
+    .mobile-intrattenimento{
+        display: inline-block;
+        position: fixed;
+        width: 300px;
+        margin-left: -150px;
+        margin-top: 100px;
+    }
+
+    .art-intr{
+        display: none;
+    }
+
+    .artisti{
+        display: none;
+    
+    }
+    
+    .intrattenimento{
+        display: none;
+    }
+}
+
+@media (max-height: 800px)
+{
+    .mobile-artisti{
+        margin-top: -180px;    
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 140px;
+    }
+}
+
+@media (max-height: 750px)
+{
+    .mobile-artisti{
+        margin-top: -110px;    
+        width: 250px;
+        margin-left: -125px;
+
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 150px;
+        width: 250px;
+        margin-left: -125px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 300px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 540px;
+    }
+}
+
+@media (max-height: 680px)
+{
+    .mobile-artisti{
+        margin-top: -30px;    
+        width: 200px;
+        margin-left: -100px;
+
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 210px;
+        width: 200px;
+        margin-left: -100px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 280px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 510px;
+    }
+}
+
+  /* social icons */
+svg {
+  width: 15px;
+  height: 15px;
+}
+
+.social-icons {
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none;
+}
+
+.social-icons li {
+  display:inline-block;
+  margin-bottom:4px
+}
+
+.social-icons a{
+  background-color:#eceeef;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+
+/* social icons color when hover */
+.social-icons a.facebook:hover {
+  background-color:#385898;
+}
+
+
+
+
+
+
+
+
+
+

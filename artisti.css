@@ -1,0 +1,142 @@
+html {
+    box-sizing: border-box;
+}
+  
+*, 
+*:before, 
+*:after {
+    box-sizing: inherit;
+}
+  
+.image-grid {
+    padding: 18px;
+    padding-top: 10em;
+}
+
+.image-row {
+    display: flex;  
+}
+
+.image-row .image {
+    margin: 38px;
+    height: 270px;  
+}
+  
+.image { 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+  
+.image-01 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;  
+}
+  
+.image-02 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;  
+}
+  
+.image-03 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;  
+}
+  
+.image-04 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;
+}
+  
+.image-05 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;
+}
+  
+.image-06 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');  */
+    flex: 1;
+}
+  
+.image-07 {
+    background-color: black;
+    /* background-image: url('images/drgam.jpg');   */
+    flex: 1;
+}
+
+.image-08 {
+    flex: 1;
+}
+
+.redband{
+    width: 100%;
+    height: 23em;
+    background-color: #FF7979;
+    z-index: -1;
+    margin-top: -550px;
+    position: fixed;
+}
+
+.redband1{
+    visibility: hidden;
+}
+ 
+  
+  @media screen and (max-width: 900px) {
+    .image-row {
+      flex-direction: column;
+    }
+    
+    .image-row .image {
+      flex-basis: auto;
+    }
+
+    .redband{
+        display: none;
+    }
+
+    .redband1{
+        background-color: #FF7979;
+        visibility: visible;
+        position: fixed;
+        z-index: -1;
+        height: 400vh;
+        width: 18em;
+        margin-top: -3100px;
+        margin-left: 30%;
+       
+    }
+
+  }
+
+  @media screen and (max-width: 500px) {
+    .redband1{
+        width: 10em;
+        margin-left: 30%;
+    }
+  }
+
+  .links ul
+  {
+  
+      /* display:none; */
+      position:absolute;
+      padding:20px;
+      /* top:76px; */
+      right:80px;
+      /* width:40%; */
+      margin-left: 70px;
+  
+  
+  } 
+
+
+
+
+  
