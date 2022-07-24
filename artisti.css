@@ -1,78 +1,104 @@
 html {
     box-sizing: border-box;
 }
-  
-*, 
-*:before, 
+
+*,
+*:before,
 *:after {
     box-sizing: inherit;
 }
-  
+
+a{
+    width: 25%;
+}
+
 .image-grid {
     padding: 18px;
     padding-top: 10em;
 }
 
 .image-row {
-    display: flex;  
+    display: flex;
 }
 
 .image-row .image {
     margin: 38px;
-    height: 270px;  
+    height: 350px;
 }
-  
-.image { 
+
+.image {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
-  
+
 .image-01 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
-    flex: 1;  
+    background-image: url('images/deangelis.jpg');
+    flex: 1;
 }
-  
+
 .image-02 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
-    flex: 1;  
+    background-image: url('images/drgam.jpg');
+    flex: 1;
 }
-  
+
 .image-03 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
-    flex: 1;  
+    background-image: url('images/ponziani.jpg');
+    flex: 1;
 }
-  
+
 .image-04 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
+    background-image: url('images/pazzaglia.jpg');
     flex: 1;
 }
-  
+
 .image-05 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
+    background-image: url('images/fiorillo.jpg');
     flex: 1;
 }
-  
+
 .image-06 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');  */
+    background-image: url('images/marcondiro.jpg');
     flex: 1;
 }
-  
+
 .image-07 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');   */
+    background-image: url('images/davoli.jpg');
     flex: 1;
 }
 
 .image-08 {
     background-color: black;
-    /* background-image: url('images/drgam.jpg');   */
+    background-image: url('images/carena.jpg');
+    flex: 1;
+}
+
+.image-09 {
+    background-color: black;
+    background-image: url('images/nasti.jpg');
+    flex: 1;
+}
+
+.image-10 {
+    background-color: black;
+    background-image: url('images/lettieri.jpg');
+    flex: 1;
+}
+
+.image-11 {
+    visibility: hidden;
+    flex: 1;
+}
+
+.image-12 {
+    visibility: hidden;
     flex: 1;
 }
 
@@ -88,13 +114,19 @@ html {
 .redband1{
     visibility: hidden;
 }
- 
-  
+
+
   @media screen and (max-width: 900px) {
     .image-row {
       flex-direction: column;
+      text-align: justify;
+
     }
-    
+
+    a{
+        width: 100%;
+    }
+
     .image-row .image {
       flex-basis: auto;
     }
@@ -112,7 +144,7 @@ html {
         width: 18em;
         margin-top: -3100px;
         margin-left: 30%;
-       
+
     }
 
   }
@@ -126,7 +158,7 @@ html {
 
   .links ul
   {
-  
+
       /* display:none; */
       position:absolute;
       padding:20px;
@@ -134,7 +166,7 @@ html {
       right:80px;
       /* width:40%; */
       margin-left: 70px;
-  
-  
-  } 
+
+
+  }
 
