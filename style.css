@@ -221,7 +221,7 @@
     }
   
     .home {
-      height: 500px;
+      height: 100vh;
     }
   }
 /* Start Style NavBar  */
@@ -401,7 +401,7 @@ nav
 }
 
 
-@media (max-width: 1000px)
+@media (max-width: 1180px)
 {
     .background{
         display: none;
@@ -476,7 +476,7 @@ nav
     display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1180px) {
     .mobile-art-intr{
         display: block;
         text-align: center;
