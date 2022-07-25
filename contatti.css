@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Trirong:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 	outline: none;
-	font-family: 'Trirong', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 
 body {

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .image img{
   height: 400px;
   width: 400px;
@@ -14,6 +15,7 @@
   padding:5px 30px 50px;
   text-align: justify;
   margin-top: 100px;
+  font-family: 'Montserrat';
 }
 
 @media screen and (max-width: 1180px) {
