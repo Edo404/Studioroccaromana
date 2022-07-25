@@ -573,6 +573,79 @@ nav
     }
 }
 
+@media (max-height: 650px)
+{
+    .mobile-artisti{
+        margin-top: -30px;    
+        width: 200px;
+        margin-left: -100px;
+
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 210px;
+        width: 200px;
+        margin-left: -100px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 250px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 470px;
+    }
+}
+
+@media (max-height: 580px)
+{
+    .mobile-artisti{
+        margin-top: -30px;    
+        width: 200px;
+        margin-left: -100px;
+
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 210px;
+        width: 200px;
+        margin-left: -100px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 190px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 420px;
+    }
+}
+
+@media (max-height: 522px)
+{
+    .mobile-artisti{
+        margin-top: 10px;    
+        width: 190px;
+        margin-left: -95px;
+
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 210px;
+        width: 190px;
+        margin-left: -95px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 150px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 350px;
+    }
+}
+
+
   /* social icons */
 svg {
   width: 15px;
