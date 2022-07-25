@@ -112,6 +112,7 @@
     background-image: url(images/sfondo.png);
     background-position: center top;
     background-size:cover;
+    z-index: 0;
   }
 
   /***************************************************************************/
@@ -222,7 +223,7 @@
     .home {
       height: 500px;
     }
-  
+  }
 /* Start Style NavBar  */
 /*
 nav
@@ -354,11 +355,12 @@ nav
 
 /*rectangles*/
 .background{
-    
+  
+  /* margin-top: -55em; */
+  /* margin-top: -900px; */
     height: 100vh;
     text-align: center;
-}
-
+} 
 
 
 #red-rect {
@@ -368,6 +370,9 @@ nav
     position: fixed;
     display: inline-block;
     margin-left: -470px;
+    z-index: -1;
+ 
+    
     
 
 }
@@ -379,6 +384,8 @@ nav
     position: fixed;
     display: inline-block;
     margin-left: 150px;
+  
+   
 }
 
 .mobile-background{
@@ -612,4 +619,3 @@ svg {
 
 
 
-}
