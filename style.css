@@ -7,7 +7,7 @@
 
 /* End Global Rules */
 
-.contenitore
+/* .contenitore
 {
     margin:auto;
     padding-right:15px;
@@ -15,11 +15,216 @@
     background-color: #fff;
     z-index: 99;
     font-family: 'o';
+} */
+
+/***************************************************************************/
+/*                                  NAVBAR                                 */
+/***************************************************************************/
+.container {
+    position: fixed;
+    width: 42%;
+    display: -webkit-box;
+    display: flex;
+    justify-content: space-around;
+    -webkit-box-align: center;
+          align-items: center;
+    z-index: 999;
+
+    
+  }
+.container2{
+   margin-left: 53%;
 }
+  .container.scrolling {
+    background-color: white;
+    color: black;
+  }
+  
+  /* hamburger menù */
+  .hamburger {
+    display: none;
+  }
+  
+  /* logo */
+  .logo {
+    -webkit-box-ordinal-group: 2;
+                        order: 1;
+    font-size: 10px;
+    color: #111;
+    margin-right: -1350px;
+    padding: 10px;
+  }
 
+  #logo{
+    width: 10%;
+  }
+  
+  /* white logo */
+  #logo-white {
+    display: none;
+  }
+  
+  /* navbar items */
+  .item {
+    color: black;
+    text-decoration: none;
+    font-family: 'Lato';
+    padding: 5px;
+    width: 90px;
+  }
+  
+  .item-logo {
+    color: rgba(255, 255, 255, 0.88);
+    text-decoration: none;
+    font-family: 'Lato';
+    padding: 10px;
+  }
+  
+  .item:hover {
+    color: rgba(0, 0, 0, 0.514);
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .item:nth-of-type(n+4) {
+    -webkit-box-ordinal-group: 3;
+                        order: 2;
+  }
 
+  .band{
+    visibility: hidden;
+  }
+  
+  .band.scrolling{
+    visibility: visible;
+    background-color: #fff;
+    width: 100%;
+    z-index: 80;
+    height: 170px;
+    position: sticky;
+    top: 0px;
+  }
+  /***************************************************************************/
+  /*                             HOME IMAGE COVER                            */
+  /***************************************************************************/
+  .home {
+    width: 100%;
+    height: 100vh;
+    background-image: url(images/sfondo.png);
+    background-position: center top;
+    background-size:cover;
+  }
+
+  /***************************************************************************/
+/*                             MEDIA FOR 1180PX                            */
+/***************************************************************************/
+@media all and (max-width: 1180px) {
+    /* navbar responsive */
+    .container {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+             flex-direction: column;
+      -webkit-box-align: stretch;
+             align-items: stretch;
+      background-color: white;
+    }
+
+    /* logo in navbar responsive */
+    .logo {
+      height: 80px;
+      line-height: 0px;
+    }
+  
+    #logo {
+      
+      
+     
+      margin-bottom: 60%;
+      width: 23%;
+    }
+    
+    .band{
+        display: none;
+    }
+    /* #logo-white {
+     display: block;
+        
+        margin-bottom: 60%;
+        width: 23%; 
+        
+      } */
+    .container2{
+        margin-left: 0%;
+     }
+     
+     .container{
+        width: 100%;
+     }
+  
+  
+    /* hamburger menù and bars */
+    .hamburger {
+      display: inline-block;
+      position: absolute;
+      top: 30px;
+      cursor: pointer;
+    }
+  
+    .bar1, .bar2, .bar3 {
+      width: 35px;
+      height: 5px;
+      background-color: #333;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+  
+    /* hamburger transition */
+    .change .bar1 {
+      -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+      transform: rotate(-45deg) translate(-9px, 6px);
+    }
+  
+    .change .bar2 {
+      opacity: 0;
+    }
+  
+    .change .bar3 {
+      -webkit-transform: rotate(45deg) translate(-8px, -8px);
+      transform: rotate(45deg) translate(-8px, -8px);
+    }
+  
+    .logo {
+      -webkit-box-ordinal-group: 1;
+                          order: 0;
+      text-align: center;
+      width: 360px;
+      margin: auto auto;
+    }
+  
+    /* navbar items */
+    .item {
+      text-align: center;
+      border-bottom: 1px solid #111;
+      display: none;
+      width: 100%;
+      height: 50px;
+      margin-top: 30px;
+    }
+  
+    .show {
+      display: block;
+    }
+  
+    #hidden{
+      display: none;
+      visibility: hidden;
+    }
+  
+    .home {
+      height: 500px;
+    }
+  
 /* Start Style NavBar  */
-
+/*
 nav
 {
     width: 100%;
@@ -109,12 +314,9 @@ a:hover
 .links ul
 {
 
-    /* display:none; */
     position:absolute;
     padding:20px;
-    /* top:76px; */
     right:80px;
-    /* width:40%; */
     margin-left: 50px;
 
 
@@ -148,7 +350,7 @@ nav
 }
 
 
-}
+}*/
 
 /*rectangles*/
 .background{
@@ -410,3 +612,4 @@ svg {
 
 
 
+}

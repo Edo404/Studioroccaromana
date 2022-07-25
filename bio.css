@@ -1,18 +1,45 @@
-.container{
-    padding-top: 2em;
-}
-
 .image img{
-  height: 50em;
-  width: 42em;
+  height: 400px;
+  width: 400px;
+  margin-top: 100px;
 
 }
 
 .grid{
   display:flex;
   padding:100px;
+  
 }
 .text{
-  padding:5px 100px 50px;
+  padding:5px 30px 50px;
   text-align: justify;
+  margin-top: 100px;
 }
+
+@media screen and (max-width: 1180px) {
+   .grid{
+    flex-direction: column;
+   }
+   .image{
+    text-align: center;
+   }
+
+
+} 
+
+@media (max-width: 600px) {
+  .image img{
+   text-align: center;
+   height: 250px;
+   width: 250px;
+  }
+
+  .text{
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: justify;
+    margin-top: 100px;
+  }
+
+
+} 

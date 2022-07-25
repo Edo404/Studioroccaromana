@@ -15,12 +15,16 @@ body {
 	background: #fff;
 }
 
-#nav
+/* #nav
 {
     
     background-color: #fff;
     z-index: 999;
-}
+} */
+
+.container2{
+	margin-left: 0%;
+ }
 
 .contact-form {
     position: absolute;
@@ -201,7 +205,16 @@ body {
 		display: block;
 		height: 20px;
 	}
+	.container2 {
+		margin-left: -100%;
+	}
+
+	.logo {
+		height: 100px;
+		line-height: 0px;
+	  }
 }
+
 
 .links ul
 {

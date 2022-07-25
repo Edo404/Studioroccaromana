@@ -1,4 +1,4 @@
-html {
+/* html {
     box-sizing: border-box;
 }
 
@@ -6,7 +6,7 @@ html {
 *:before,
 *:after {
     box-sizing: inherit;
-}
+} */
 
 a{
     width: 25%;
