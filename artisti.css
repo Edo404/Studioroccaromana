@@ -13,15 +13,12 @@
 font-size: 15px;
 }
 
+
 .nome{
-    text-align: center;
+    margin-left: 30px;
     text-decoration: none;
     color: black;
 }
-
-/* .nome{
-    margin-left: 30px;
-} */
 
 a{
     width: 25%;
