@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.home{
+    background-image: url(images/sfondochisiamo.png);
+}
 .testo{
     text-align: justify;
     padding: 10em;
