@@ -6,6 +6,10 @@
     font-family: 'Montserrat';
 }
 
+.titolo{
+margin-left: 0px;
+font-size: 15px;
+}
 @media (max-width: 900px)
 {
     .testo
@@ -14,5 +18,10 @@
         padding-left: 1em;
         padding-right: 1em;
         font-size: 18px;
+    }
+
+    .titolo{
+        text-align: center;
+    font-size: 15px;
     }
 }
