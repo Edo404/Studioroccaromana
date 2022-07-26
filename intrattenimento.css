@@ -9,13 +9,13 @@
 } */
 .titolo{
     margin-left: 40px;
-    font-size: 15px;
-    }
-    
+font-size: 15px;
+}
+
 a{
     width: 25%;
 }
-  
+
 .image-grid {
     padding: 18px;
     padding-top: 10em;
@@ -27,18 +27,20 @@ a{
 
 .image-row .image {
     margin: 30px;
-    height: 250px;
+    height: 270px;
+
 }
-  
-.image { 
+
+.image {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    width: 270px;
 }
   
 .image-01 {
     background-color: black;
-    background-image: url('images/bellaepocatxt.png'); 
+    background-image: url('images/bella\ epoca.jpg'); 
     flex: 1;  
 }
   

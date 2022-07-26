@@ -54,9 +54,3 @@ window.addEventListener("scroll", (event) => {
         $(".band").removeClass("scrolling");
       }
   });
-
-//artisti hover
-function marcondiro()
-{
-  $("image-06").addClass("hover");
-}

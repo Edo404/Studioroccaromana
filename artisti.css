@@ -13,8 +13,19 @@
 font-size: 15px;
 }
 
+.nome{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+/* .nome{
+    margin-left: 30px;
+} */
+
 a{
     width: 25%;
+    text-decoration: none;
 }
 
 .image-grid {
@@ -28,30 +39,32 @@ a{
 
 .image-row .image {
     margin: 30px;
-    height: 250px;
+    height: 270px;
+
 }
 
 .image {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    width: 270px;
 }
 
 .image-01 {
     background-color: black;
-    background-image: url('images/edodeangetxt.png');
+    background-image: url('images/deangelis.jpg');
     flex: 1;
 }
 
 .image-02 {
     background-color: black;
-    background-image: url('images/drgamtxt.png');
+    background-image: url('images/drgam.jpg');
     flex: 1;
 }
 
 .image-03 {
     background-color: black;
-    background-image: url('images/antonellaponztxt.png');
+    background-image: url('images/ponziani.jpg');
     flex: 1;
 }
 
@@ -70,12 +83,6 @@ a{
 .image-06 {
     background-color: black;
     background-image: url('images/marcondiro.jpg');
-    flex: 1;
-}
-
-.image-06.hover {
-    background-color: black;
-    background-image: url('images/marcondirotxt.png');
     flex: 1;
 }
 
