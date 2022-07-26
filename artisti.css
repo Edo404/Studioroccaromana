@@ -9,7 +9,7 @@
     box-sizing: inherit;
 } */
 .titolo{
-text-align: center;
+    margin-left: 40px;
 font-size: 15px;
 }
 
@@ -127,6 +127,10 @@ a{
       text-align: justify;
 
     }
+    .titolo{
+        text-align: center;
+        font-size: 15px;
+        }
 
     a{
         width: 100%;
