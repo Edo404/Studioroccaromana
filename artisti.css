@@ -18,6 +18,8 @@ font-size: 15px;
     margin-left: 30px;
     text-decoration: none;
     color: black;
+    margin-bottom: 40px;
+    margin-top: -20px;
 }
 
 a{
@@ -138,6 +140,7 @@ a{
 
     }
     .titolo{
+        margin-left: 0px;
         text-align: center;
         font-size: 15px;
         }

@@ -81,12 +81,15 @@ a{
   @media screen and (max-width: 900px) {
     .image-row {
       flex-direction: column;
+      text-align: center;
     }
     
     .titolo{
+        margin-left: 0px;
         text-align: center;
         font-size: 15px;
         }
+
 
     a{
         width: 100%;
