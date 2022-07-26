@@ -22,12 +22,12 @@ a{
 }
 
 .image-row {
-    display: flex;  
+    display: flex;
 }
 
 .image-row .image {
-    margin: 38px;
-    height: 350px;  
+    margin: 30px;
+    height: 250px;
 }
   
 .image { 
@@ -38,7 +38,7 @@ a{
   
 .image-01 {
     background-color: black;
-    background-image: url('images/bella\ epoca.jpg'); 
+    background-image: url('images/bellaepocatxt.png'); 
     flex: 1;  
 }
   
