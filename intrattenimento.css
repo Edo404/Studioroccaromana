@@ -7,7 +7,11 @@
 *:after {
     box-sizing: inherit;
 } */
-
+.titolo{
+    text-align: center;
+    font-size: 15px;
+    }
+    
 a{
     width: 25%;
 }
