@@ -145,7 +145,7 @@
     #logo {
       
       
-      
+        margin-left: 10px;
       margin-bottom: 60%;
       width: 23%;
     }
@@ -694,9 +694,11 @@ svg {
 
     #logo {
         width: 55%;
+        margin-left: 10px;
     }
     .logo {
         width: 150px;
+        
     }
 
 
