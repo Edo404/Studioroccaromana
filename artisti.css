@@ -22,10 +22,11 @@ font-size: 15px;
     margin-top: -20px;
 }
 
-a{
+.quadrato{
     width: 25%;
     text-decoration: none;
 }
+
 
 .image-grid {
     padding: 18px;
