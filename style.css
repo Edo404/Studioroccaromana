@@ -700,6 +700,11 @@ nav
         background-color: black
     }
 
+    .item {
+        
+        padding: 0px;
+        
+      }
 
 }
 
