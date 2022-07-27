@@ -103,6 +103,10 @@
     position: sticky;
     top: 0px;
   }
+
+  .footer{
+    display: none;
+  }
   /***************************************************************************/
   /*                             HOME IMAGE COVER                            */
   /***************************************************************************/
@@ -129,16 +133,19 @@
       background-color: white;
     }
 
+
     /* logo in navbar responsive */
     .logo {
       height: 80px;
+      
       line-height: 0px;
+      text-align: center;
     }
   
     #logo {
       
       
-     
+      
       margin-bottom: 60%;
       width: 23%;
     }
@@ -683,11 +690,18 @@ svg {
   background-color:#385898;
 }
 
+@media all and (max-width: 380px) {
+
+    #logo {
+        width: 55%;
+    }
+    .logo {
+        width: 150px;
+    }
 
 
 
-
-
+}
 
 
 
