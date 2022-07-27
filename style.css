@@ -652,43 +652,30 @@ nav
     }
 }
 
+@media (max-height: 520px)
+{
+    .mobile-artisti{
+        margin-top: 10px;    
+        width: 175px;
+        margin-left: -88px;
 
-  /* social icons */
-svg {
-  width: 15px;
-  height: 15px;
+    }
+    
+    .mobile-intrattenimento{
+        margin-top: 195px;
+        width: 175px;
+        margin-left: -88px;
+    }
+
+    #mobile-red-rect {
+        margin-top: 150px;
+    }
+    
+    #mobile-green-rect {
+        margin-top: 330px;
+    }
 }
 
-.social-icons {
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none;
-}
-
-.social-icons li {
-  display:inline-block;
-  margin-bottom:4px
-}
-
-.social-icons a{
-  background-color:#eceeef;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
-}
-
-/* social icons color when hover */
-.social-icons a.facebook:hover {
-  background-color:#385898;
-}
 
 @media all and (max-width: 380px) {
 
