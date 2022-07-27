@@ -104,9 +104,9 @@
     top: 0px;
   }
 
-  .footer{
+  .sez{
     display: none;
-  }
+}
   /***************************************************************************/
   /*                             HOME IMAGE COVER                            */
   /***************************************************************************/
@@ -681,7 +681,7 @@ nav
 
     #logo {
         width: 55%;
-       
+       margin-left: -5px;
     }
     .logo {
         width: 150px;
@@ -691,6 +691,13 @@ nav
     #logo-white {
         width: 85%;
         margin-left: 10px;
+    }
+
+
+    .sez{
+        display: block;
+
+        background-color: black
     }
 
 
