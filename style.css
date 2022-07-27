@@ -701,6 +701,10 @@ svg {
         
     }
 
+    #logo-white {
+        width: 85%;
+        margin-left: 10px;
+    }
 
 
 }
