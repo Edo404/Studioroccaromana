@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-.home{
+#home{
     background-image: url(images/sfondochisiamo.png);
+    width: 100%;
+    height: 100vh;
+    background-position: center top;
+    background-size:cover;
+    z-index: 0;
 }
 .testo{
     text-align: justify;
@@ -15,6 +20,12 @@ font-size: 22px;
 }
 @media (max-width: 900px)
 {
+    #home{
+        background-image: url(images/sfondochisiamo.png);
+        width: 100%;
+        height: 130vh;
+    }
+
     .testo
     {
         padding-top: 7em;
