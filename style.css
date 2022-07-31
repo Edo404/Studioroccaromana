@@ -30,7 +30,7 @@
           align-items: center;
     z-index: 999;
 
-    
+
   }
 .container2{
    margin-left: 53%;
@@ -39,12 +39,12 @@
     background-color: white;
     color: black;
   }
-  
+
   /* hamburger menù */
   .hamburger {
     display: none;
   }
-  
+
   /* logo */
   .logo {
     -webkit-box-ordinal-group: 2;
@@ -58,12 +58,12 @@
   #logo{
     width: 10%;
   }
-  
+
   /* white logo */
   #logo-white {
     display: none;
   }
-  
+
   /* navbar items */
   .item {
     color: black;
@@ -72,19 +72,19 @@
     padding: 5px;
     /* width: 90px; */
   }
-  
+
   .item-logo {
     color: rgba(255, 255, 255, 0.88);
     text-decoration: none;
     font-family: 'Montserrat';
     padding: 10px;
   }
-  
+
   .item:hover {
     color: rgba(0, 0, 0, 0.514);
     background: rgba(255, 255, 255, 0.15);
   }
-  
+
   .item:nth-of-type(n+4) {
     -webkit-box-ordinal-group: 3;
                         order: 2;
@@ -93,7 +93,7 @@
   .band{
     visibility: hidden;
   }
-  
+
   .band.scrolling{
     visibility: visible;
     background-color: #fff;
@@ -137,38 +137,38 @@
     /* logo in navbar responsive */
     .logo {
       height: 80px;
-      
+
       line-height: 0px;
       text-align: center;
     }
-  
+
     #logo {
-      
-      
+
+
         margin-left: 10px;
       margin-bottom: 60%;
       width: 23%;
     }
-    
+
     .band{
         display: none;
     }
     /* #logo-white {
      display: block;
-        
+
         margin-bottom: 60%;
-        width: 23%; 
-        
+        width: 23%;
+
       } */
     .container2{
         margin-left: 0%;
      }
-     
+
      .container{
         width: 100%;
      }
-  
-  
+
+
     /* hamburger menù and bars */
     .hamburger {
       display: inline-block;
@@ -176,7 +176,7 @@
       top: 30px;
       cursor: pointer;
     }
-  
+
     .bar1, .bar2, .bar3 {
       width: 35px;
       height: 5px;
@@ -184,22 +184,22 @@
       margin: 6px 0;
       transition: 0.4s;
     }
-  
+
     /* hamburger transition */
     .change .bar1 {
       -webkit-transform: rotate(-45deg) translate(-9px, 6px);
       transform: rotate(-45deg) translate(-9px, 6px);
     }
-  
+
     .change .bar2 {
       opacity: 0;
     }
-  
+
     .change .bar3 {
       -webkit-transform: rotate(45deg) translate(-8px, -8px);
       transform: rotate(45deg) translate(-8px, -8px);
     }
-  
+
     .logo {
       -webkit-box-ordinal-group: 1;
                           order: 0;
@@ -207,7 +207,7 @@
       width: 360px;
       margin: auto auto;
     }
-  
+
     /* navbar items */
     .item {
       text-align: center;
@@ -217,19 +217,25 @@
       height: 50px;
       margin-top: 30px;
     }
-  
+
     .show {
       display: block;
     }
-  
+
     #hidden{
       display: none;
       visibility: hidden;
     }
-  
+
     .home {
-      height: 100vh;
-    }
+        width: 100%;
+        height: 1000px;
+        background-image: url(images/homemobile1.png);
+        background-position: center top;
+        background-size:cover;
+        z-index: 0;
+      }
+
   }
 /* Start Style NavBar  */
 /*
@@ -246,7 +252,7 @@ nav
 ul
 {
     list-style: none;
-    
+
 }
 
 li
@@ -256,7 +262,7 @@ li
     padding:20px;
     font-size:18px;
     z-index: 1;
-   
+
 }
 
 a
@@ -317,7 +323,7 @@ a:hover
 {
     padding:10px 10px;
 
-}  
+}
 
 .links ul
 {
@@ -328,13 +334,13 @@ a:hover
     margin-left: 50px;
 
 
-} 
+}
 
 .links:hover ul
 {
     display:block;
 
-} 
+}
 nav
 {
     width: 100%;
@@ -362,12 +368,12 @@ nav
 
 /*rectangles*/
 .background{
-  
+
   /* margin-top: -55em; */
   /* margin-top: -900px; */
     height: 100vh;
     text-align: center;
-} 
+}
 
 
 #red-rect {
@@ -378,9 +384,9 @@ nav
     display: inline-block;
     margin-left: -470px;
     z-index: -1;
- 
-    
-    
+
+
+
 
 }
 
@@ -391,21 +397,21 @@ nav
     position: fixed;
     display: inline-block;
     margin-left: 150px;
-  
-   
+
+
 }
 
 .mobile-background{
     display: none;
 }
 
-#mobile-red-rect {
+/* #mobile-red-rect {
     display: none;
 }
 
 #mobile-green-rect {
     display: none;
-}
+} */
 
 
 @media (max-width: 1180px)
@@ -417,18 +423,18 @@ nav
     #red-rect {
         display: none;
     }
-    
+
     #green-rect {
         display: none;
     }
 
     .mobile-background{
         display: block;
-        height: 130vh;
+        height: 100vh;
         text-align: center;
     }
-    
-    #mobile-red-rect {
+
+    /* #mobile-red-rect {
         display: block;
         position: absolute;
         background: #FF7979;
@@ -436,7 +442,7 @@ nav
         width: 100%;
         margin-top: 300px;
     }
-    
+
     #mobile-green-rect {
         display: block;
         position: absolute;
@@ -444,7 +450,7 @@ nav
         height: 5em;
         width: 100%;
         margin-top: 620px;
-    }
+    } */
 }
 
 
@@ -487,7 +493,7 @@ nav
     .mobile-art-intr{
         display: block;
         text-align: center;
-        margin-top: -430px;
+        /* margin-top: -430px; */
         z-index: 1;
     }
 
@@ -496,15 +502,15 @@ nav
         width: 300px;
         position: absolute;
         margin-left: -150px;
-        margin-top: -60vh;    
+        margin-top: 135px;
     }
-    
+
     .mobile-intrattenimento{
         display: inline-block;
         position: absolute;
         width: 300px;
         margin-left: -150px;
-        margin-top: -17vh;
+        margin-top: 520px;
     }
 
     .art-intr{
@@ -513,9 +519,9 @@ nav
 
     .artisti{
         display: none;
-    
+
     }
-    
+
     .intrattenimento{
         display: none;
     }
@@ -524,21 +530,21 @@ nav
 /* @media (max-height: 1000px)
 {
     .mobile-artisti{
-        margin-top: -340px;    
+        margin-top: -340px;
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 0px;
     }
 } */
 
 
-@media (max-height: 800px)
+/* @media (max-height: 800px)
 {
     .mobile-artisti{
-        margin-top: -440px;    
+        margin-top: -440px;
     }
-    
+
     .mobile-intrattenimento{
         margin-top: -100px;
     }
@@ -547,12 +553,12 @@ nav
 @media (max-height: 750px)
 {
     .mobile-artisti{
-        margin-top: -340px;    
+        margin-top: -340px;
         width: 250px;
         margin-left: -125px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: -80px;
         width: 250px;
@@ -562,7 +568,7 @@ nav
     #mobile-red-rect {
         margin-top: 300px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 540px;
     }
@@ -571,12 +577,12 @@ nav
 @media (max-height: 680px)
 {
     .mobile-artisti{
-        margin-top: -210px;    
+        margin-top: -210px;
         width: 200px;
         margin-left: -100px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 20px;
         width: 200px;
@@ -586,7 +592,7 @@ nav
     #mobile-red-rect {
         margin-top: 280px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 510px;
     }
@@ -595,12 +601,12 @@ nav
 @media (max-height: 650px)
 {
     .mobile-artisti{
-        margin-top: -200px;    
+        margin-top: -200px;
         width: 200px;
         margin-left: -100px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 50px;
         width: 200px;
@@ -610,7 +616,7 @@ nav
     #mobile-red-rect {
         margin-top: 250px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 470px;
     }
@@ -619,12 +625,12 @@ nav
 @media (max-height: 580px)
 {
     .mobile-artisti{
-        margin-top: -170px;    
+        margin-top: -170px;
         width: 200px;
         margin-left: -100px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 50px;
         width: 200px;
@@ -634,7 +640,7 @@ nav
     #mobile-red-rect {
         margin-top: 190px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 420px;
     }
@@ -643,12 +649,12 @@ nav
 @media (max-height: 522px)
 {
     .mobile-artisti{
-        margin-top: -130px;    
+        margin-top: -130px;
         width: 190px;
         margin-left: -95px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 80px;
         width: 190px;
@@ -658,7 +664,7 @@ nav
     #mobile-red-rect {
         margin-top: 150px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 350px;
     }
@@ -667,12 +673,12 @@ nav
 @media (max-height: 520px)
 {
     .mobile-artisti{
-        margin-top: -140px;    
+        margin-top: -140px;
         width: 175px;
         margin-left: -88px;
 
     }
-    
+
     .mobile-intrattenimento{
         margin-top: 45px;
         width: 175px;
@@ -682,11 +688,11 @@ nav
     #mobile-red-rect {
         margin-top: 150px;
     }
-    
+
     #mobile-green-rect {
         margin-top: 330px;
     }
-}
+} */
 
 
 @media all and (max-width: 380px) {
@@ -697,7 +703,7 @@ nav
     }
     .logo {
         width: 150px;
-        
+
     }
 
     #logo-white {
@@ -705,22 +711,12 @@ nav
         margin-left: 10px;
     }
 
-
-    .sez{
-        display: block;
-
-        background-color: black
-    }
-
     .item {
-        
+
         padding: 0px;
-        
+
       }
 
-      .home {
-        height: 130vh;
-      }
 
 }
 
