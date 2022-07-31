@@ -170,11 +170,19 @@ font-size: 15px;
         visibility: visible;
         position: fixed;
         z-index: -1;
-        height: 150vh;
+        height: 200vh;
         width: 18em;
         margin-top: -4500px;
         margin-left: 30%;
 
+    }
+
+    .image-11 {
+        display: none;
+    }
+    
+    .image-12 {
+        display: none;        
     }
 
   }
