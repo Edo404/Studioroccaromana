@@ -168,9 +168,9 @@ font-size: 15px;
     .redband1{
         background-color: #FF7979;
         visibility: visible;
-        position: sticky;
+        position: fixed;
         z-index: -1;
-        height: 800vh;
+        height: 150vh;
         width: 18em;
         margin-top: -4500px;
         margin-left: 30%;
