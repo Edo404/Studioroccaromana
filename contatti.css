@@ -199,6 +199,9 @@ body {
 	.contact-form .first-container {
 		padding: 40px 0;
 	}
+	.contact-form{
+		margin-top: -15px;
+	}
 }
  
 @media screen and (max-width: 1180px) {
@@ -214,6 +217,7 @@ body {
 		height: 100px;
 		line-height: 0px;
 	  }
+
 }
 
 
