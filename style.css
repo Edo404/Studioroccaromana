@@ -719,7 +719,38 @@ nav
 
 
 }
+.cookie{
+    margin: 24px 0;
+    line-height: 2;
 
+}
 
+.cookie-container{
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    font-family: 'Montserrat';
+    background-color: #fff;
+    color: #111;
+    padding: 0 32px;
+    box-shadow: 0 -2px 16px;
 
+    transition: 400ms;
+}
+
+.cookie-container.active{
+    bottom: 0;
+}
+
+.cookie-btn{
+    background: rgba(21, 33, 156, 0.4);
+    border: 0;
+    color:#fff;
+    padding: 12px 48px;
+    font-size: 18px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor:pointer;
+}
 
