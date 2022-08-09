@@ -110,6 +110,12 @@ font-size: 15px;
     flex: 1;
 }
 
+.image-15 {
+    background-color: black;
+    background-image: url('images/moniapalmieri.jpg');
+    flex: 1;
+}
+
 .image-11 {
     visibility: hidden;
     flex: 1;
