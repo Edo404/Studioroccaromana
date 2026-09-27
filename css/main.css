@@ -273,7 +273,7 @@ main { flex: 1; }
   .home-choices {
     grid-template-columns: var(--tile);
     gap: clamp(48px, 10svh, 110px);
-    padding: calc(var(--header-h) + 16px) 0 32px;
+    padding: calc(var(--header-h) + 8px) 0 72px;
   }
   /* bande orizzontali su mobile */
   .choice::before {
@@ -701,7 +701,7 @@ main { flex: 1; }
   text-align: center;
   font-size: .75rem;
 }
-.home-legal a, .home-legal .link-btn {
+.home-legal span, .home-legal a, .home-legal .link-btn {
   padding: 2px 6px;
   background: rgba(255, 255, 255, .85);
   color: var(--ink);
