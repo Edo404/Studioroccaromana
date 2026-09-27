@@ -1,99 +1,205 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EJW26R73HE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EJW26R73HE');
+</script>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Contatti</title>
+
     <link rel="icon" href="images/logo.jpg" type="image/icon type">
+
     <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sen&amp;display=swap'><link rel="stylesheet" href="./style.css">
+
     <link rel="stylesheet" href="contatti.css">
+
 </head>
 
+
+
 <body>
+
     <!-- navbar -->
+
     <div class="container2">
+
         <div class="container">
+
             <!-- hamburger menù -->
+
         <div class="hamburger" onclick="myFunction(this)">
+
             <div class="bar1"></div>
+
             <div class="bar2"></div>
+
             <div class="bar3"></div>
+
         </div>
+
         <div class="logo">
+
             <a href="index.html" class="item-logo">
+
                 <img id="logo" src="images/logo.jpg" alt="Logo">
+
                 <img id="logo-white" src="images/logo.jpg" alt="Logo">
+
             </a>
+
         </div>
+
         <a href="index.html" class="item">HOME</a>
+
         <a href="chisiamo.html" class="item">CHI SIAMO</a>
+
         <a href="contatti.html" class="item">CONTATTI</a>
+
         </div>
+
         
+
     </div>
+
+
 
     <div class="band">
+
     </div>
+
+
 
         
+
     <div class="contact-form">
+
         <div class="first-container">
+
             <div class="info-container">
+
                 <div>
+
                     <h3>PRODUZIONE E ORGANIZZAZIONE <br> - Angelo De Cave -</h3>
+
                     <br>
+
                     <p>SEDE LEGALE: <br> Via Cuba 1, 38410 Los Realejos - TENERIFE (SPAGNA)</p>
+
                     <p>GRUPPO ROPASA TEL. +34.772.318997</p>
-                    <p>E-mail: studioroccaromana@gmail.com</p>
+
+                    <p>E-mail: angelo@studioroccaromana.it</p>
+
                     <br>
+
                     <p>SEDE OPERATIVA: <br> Strada Zì Maria 695, 04010 Borgo Grappa - LATINA (ITALIA)</p>
+
                     <p>Cell. 329.6137712 – 338.4173118 - <br> 331.7349743 – 388.4062867 <br> TEL/FAX 0773.209005</p>
-                    <p>E-mail: studioroccaromana@libero.it</p>
+
+                    <p>E-mail: studioroccaromana@gmail.com <br> studioroccaromana@libero.it</p>
+
                 </div>
+
                 
+
             </div>
+
         </div>
+
         <div class="second-container">
+
             <h2>Form per ingaggio artisti</h2>
+
          <br>
+
             <form target="_blank" action="https://formsubmit.co/studioroccaromana@libero.it" method="POST">
+
                 <div class="form-group">
+
                         <div class="form-row">
+
                             <!-- <div class="buttons">
+
                                 <input type="radio" id="huey" name="categoria" value="artisti"
+
                                     checked>
+
                                 <label class="choice" for="huey">Artista</label>
 
+
+
                                 <input type="radio" id="dewey" name="categoria" value="intrattenimento">
+
                                 <label class="choice" for="dewey">Intrattenitore</label>
+
                         </div> -->
+
                  
+
                         <div class="col">
+
                             <input id="name-input" class="form-control" name="name" type="text" placeholder="Nome*" required/><input id="name-input" class="form-control" name="surname" type="text" placeholder="Cognome*" required/>
+
                         </div>
+
                         <div class="col">
+
                             <input id="name-input" class="form-control" name="nazionalità" type="text" placeholder="Nazionalità*" required/>
+
                         </div>
+
                         <div class="col">
+
                             <input id="email-input" class="form-control" name="email" type="email" placeholder="Email*" required/>
+
                         </div>
+
                         <div class="col">
+
                             <input id="phone-input" class="form-control" name="phone" type="text" placeholder="Telefono"/>
+
                         </div>
+
                     </div>
+
                 </div>
+
                 <div class="form-group">
+
                     <textarea id="message-textarea" name="message" class="form-control" placeholder="Scrivi il tuo messaggio" required></textarea>
+
                 </div>
+
                 <button type="submit" class="btn btn-lg btn-dark btn-block">Invia messaggio</button>
+
             </form>
+
         </div>
+
     </div>
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script>
+
     <script src="script.js"></script>
+
 </body>
+
+
 
 </html>
