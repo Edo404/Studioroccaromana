@@ -1,64 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EJW26R73HE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EJW26R73HE');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>intrattenimento</title>
-    <link rel="icon" href="images/logo.jpg" type="image/icon type">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Sen&amp;display=swap'><link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="intrattenimento.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Intrattenimento — Studio Rocca Romana</title>
+  <meta name="description" content="Intrattenimento per eventi: orchestre e tribute band proposte da Studio Rocca Romana.">
+  <link rel="canonical" href="https://www.studioroccaromana.it/intrattenimento.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Studio Rocca Romana">
+  <meta property="og:title" content="Intrattenimento — Studio Rocca Romana">
+  <meta property="og:description" content="Intrattenimento per eventi: orchestre e tribute band proposte da Studio Rocca Romana.">
+  <meta property="og:url" content="https://www.studioroccaromana.it/intrattenimento.html">
+  <meta property="og:image" content="https://www.studioroccaromana.it/img/og-image.jpg">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&amp;display=swap">
+  <link rel="stylesheet" href="css/main.css">
+  <script>document.documentElement.classList.add("js")</script>
+  <script src="js/main.js" defer></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJW26R73HE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-EJW26R73HE");
+  </script>
 </head>
-
 <body>
-    <div class="container2">
-        <div class="container">
-            <!-- hamburger menù -->
-        <div class="hamburger" onclick="myFunction(this)">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-        <div class="logo">
-            <a href="index.html" class="item-logo">
-                <img id="logo" src="images/logo.jpg" alt="Logo">
-                <img id="logo-white" src="images/logo.jpg" alt="Logo">
-            </a>
-        </div>
-        <a href="index.html" class="item">HOME</a>
-        <a href="chisiamo.html" class="item">CHI SIAMO</a>
-        <a href="contatti.html" class="item">CONTATTI</a>
-        </div>
-        
-    </div>
-    
-    <div class="image-grid">
-        <div class="titolo">
-            <h1>INTRATTENIMENTO</h1>
-        </div>
-        <div class="image-row">
-          <a href="bellaepoca.html" class="quadrato"><div class="image image-01"></div><h4 class="nome">BELLA EPOCA ORCHESTRA</h4> </a>   
-          <a href="spaziovasco.html" class="quadrato"><div class="image image-02"></div><h4 class="nome">SPAZIO VASCO</h4> </a>  
-          <div class="image image-03" class="quadrato"></div>  
-          <div class="image image-04" class="quadrato"></div>  
-        </div> 
-      </div>     
 
-    <div class="greenband">
-    </div>
-    <div class="greenband1">
-    </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js'></script><script  src="./script.js"></script>
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+<header class="site-header site-header--solid">
+  <div class="header-inner">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="menu" aria-label="Principale">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="chisiamo.html">Chi siamo</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+      </ul>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Studio Rocca Romana — Home">
+      <img src="img/logo.webp" width="120" height="120" alt="Studio Rocca Romana">
+    </a>
+  </div>
+</header>
+
+<main id="contenuto" class="page">
+  <div class="container">
+  <section class="roster theme-green" aria-labelledby="g0">
+    <h1 class="page-title" id="g0">Intrattenimento</h1>
+    <ul class="cards">
+      <li class="card reveal" style="--delay:0s">
+        <a href="bellaepoca.html">
+          <div class="card-media"><div class="card-img"><img src="img/bella-epoca.webp" width="800" height="800" alt="" loading="eager" decoding="async"></div></div>
+          <h3 class="card-name"><span>Bella Epoca Orchestra</span></h3>
+        </a>
+      </li>
+      <li class="card reveal" style="--delay:0.08s">
+        <a href="spaziovasco.html">
+          <div class="card-media"><div class="card-img"><img src="img/spazio-vasco.webp" width="800" height="800" alt="" loading="eager" decoding="async"></div></div>
+          <h3 class="card-name"><span>Spazio Vasco</span></h3>
+        </a>
+      </li>
+    </ul>
+  </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <p>© Studio Rocca Romana · <a href="https://www.iubenda.com/privacy-policy/83350970" class="iubenda-black iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a></p>
+</footer>
+
+<div class="cookie-banner" role="region" aria-label="Informativa cookie" hidden>
+  <p>Utilizziamo i cookies in questo sito per poterti offrire la migliore esperienza sul nostro sito. <a href="https://www.iubenda.com/privacy-policy/83350970" class="iubenda-black iubenda-noiframe iubenda-embed" title="Privacy Policy">Privacy Policy</a></p>
+  <button class="cookie-btn" type="button">Okay</button>
+</div>
 </body>
-    
 </html>
