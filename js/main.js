@@ -39,7 +39,7 @@
   }
 
   /* ---------- Animazioni in ingresso allo scroll ---------- */
-  var targets = document.querySelectorAll(".reveal, .roster");
+  var targets = document.querySelectorAll(".card, .roster");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -54,29 +54,94 @@
     targets.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---------- Banner cookie ---------- */
-  var KEY = "cookieBannerDisplayed";
+  /* ---------- Consenso cookie + Google Analytics ----------
+     GA viene caricato SOLO dopo "Accetta". "Rifiuta" e la × hanno lo stesso
+     peso; la scelta vale 6 mesi e si può cambiare da "Preferenze cookie". */
+  var GA_ID = "G-EJW26R73HE";
+  var KEY = "srr-consent";
+  var MAX_AGE = 1000 * 60 * 60 * 24 * 182; // ~6 mesi
   var banner = document.querySelector(".cookie-banner");
-  var storage = null;
-  try { storage = window.localStorage; } catch (e) { /* storage bloccato */ }
 
-  if (banner && !(storage && storage.getItem(KEY))) {
+  function readConsent() {
+    try {
+      var c = JSON.parse(localStorage.getItem(KEY));
+      if (c && typeof c.analytics === "boolean" && Date.now() - c.ts < MAX_AGE) return c;
+    } catch (e) { /* storage bloccato o valore non valido */ }
+    return null;
+  }
+
+  function saveConsent(analytics) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify({ analytics: analytics, ts: Date.now() }));
+      localStorage.removeItem("cookieBannerDisplayed"); // chiave del vecchio banner
+    } catch (e) { /* ignora */ }
+  }
+
+  function loadAnalytics() {
+    if (window.gtag) return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("consent", "default", {
+      analytics_storage: "granted",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied"
+    });
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+  }
+
+  function removeAnalyticsCookies() {
+    var host = location.hostname;
+    var domains = ["", host, "." + host, "." + host.split(".").slice(-2).join(".")];
+    document.cookie.split(";").forEach(function (c) {
+      var name = c.split("=")[0].trim();
+      if (/^_ga/.test(name)) {
+        domains.forEach(function (d) {
+          document.cookie = name + "=; Max-Age=0; path=/" + (d ? "; domain=" + d : "");
+        });
+      }
+    });
+  }
+
+  function showBanner(delay) {
+    if (!banner) return;
     banner.hidden = false;
-    setTimeout(function () { banner.classList.add("is-visible"); }, 1200);
-    banner.querySelector(".cookie-btn").addEventListener("click", function () {
-      banner.classList.remove("is-visible");
-      try { storage && storage.setItem(KEY, "true"); } catch (e) { /* ignora */ }
-      setTimeout(function () { banner.hidden = true; }, 600);
+    setTimeout(function () { banner.classList.add("is-visible"); }, delay || 30);
+  }
+
+  function hideBanner() {
+    banner.classList.remove("is-visible");
+    setTimeout(function () { banner.hidden = true; }, 600);
+  }
+
+  var consent = readConsent();
+  if (consent && consent.analytics) loadAnalytics();
+  else if (!consent) showBanner(900);
+
+  if (banner) {
+    banner.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-consent]");
+      if (!btn) return;
+      var accepted = btn.getAttribute("data-consent") === "accept";
+      var wasLoaded = !!window.gtag;
+      saveConsent(accepted);
+      hideBanner();
+      if (accepted) {
+        loadAnalytics();
+      } else if (wasLoaded) {
+        // consenso revocato: elimina i cookie GA e ricarica senza lo script
+        removeAnalyticsCookies();
+        location.reload();
+      }
     });
   }
 
-  /* ---------- iubenda (link Privacy Policy), caricato dopo il load ---------- */
-  if (document.querySelector(".iubenda-embed")) {
-    window.addEventListener("load", function () {
-      var s = document.createElement("script");
-      s.src = "https://cdn.iubenda.com/iubenda.js";
-      s.async = true;
-      document.body.appendChild(s);
-    });
-  }
+  document.querySelectorAll("[data-cookie-prefs]").forEach(function (b) {
+    b.addEventListener("click", function () { showBanner(); });
+  });
 })();

@@ -2,6 +2,24 @@
    Studio Rocca Romana — foglio di stile unico
    ========================================================================== */
 
+/* Montserrat ospitato in locale (nessuna chiamata a Google Fonts) */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/montserrat-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../fonts/montserrat-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   --red: #ff7979;
   --green: #a9cd99;            /* = rgba(41,130,0,.4) su bianco, reso opaco */
@@ -184,8 +202,9 @@ main { flex: 1; }
    Home
    ========================================================================== */
 .home {
-  --tile: clamp(240px, 28vw, 440px);
+  --tile: clamp(280px, min(32vw, 58vh), 520px);
   --band: calc(var(--tile) * .72);
+  --shade: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3));
   position: relative;
   isolation: isolate;
   min-height: 100vh;
@@ -193,7 +212,7 @@ main { flex: 1; }
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: #fff url("../img/bg-home.webp") center / cover no-repeat;
+  background: var(--shade), url("../img/bg-home.webp") center / cover no-repeat #fff;
 }
 
 .home-choices {
@@ -249,7 +268,7 @@ main { flex: 1; }
   .home {
     --tile: min(72vw, 36svh, 340px);
     --band: calc(var(--tile) * .38);
-    background-image: url("../img/bg-home-sm.webp");
+    background-image: var(--shade), url("../img/bg-home-sm.webp");
   }
   .home-choices {
     grid-template-columns: var(--tile);
@@ -306,6 +325,13 @@ main { flex: 1; }
 @media (max-width: 820px)  { .cards { grid-template-columns: repeat(2, 1fr); } }
 
 .card { position: relative; }
+/* La comparsa anima solo foto e nome: se animassimo l'intera card, durante la
+   transizione ogni card diventerebbe un contesto di impilamento e la sua banda
+   (larga tutta la riga) coprirebbe le foto delle card vicine. */
+.js .card:not(.is-in) .card-img,
+.js .card:not(.is-in) .card-name { opacity: 0; }
+.card.is-in .card-img,
+.card.is-in .card-name { animation: rise-in .7s var(--ease) var(--delay, 0s) backwards; }
 .card a { display: block; text-decoration: none; }
 
 .card-media { position: relative; aspect-ratio: 1; }
@@ -611,34 +637,129 @@ main { flex: 1; }
   left: 50%;
   bottom: 16px;
   z-index: 200;
-  width: min(calc(100% - 32px), 760px);
+  width: min(calc(100% - 32px), 820px);
   display: flex;
   align-items: center;
-  gap: 16px 24px;
-  padding: 18px 24px;
+  gap: 16px 28px;
+  padding: 22px 48px 22px 26px;
   background: #fff;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .2);
-  font-size: .9rem;
-  line-height: 1.6;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .22);
+  font-size: .88rem;
+  line-height: 1.55;
   transform: translate(-50%, calc(100% + 32px));
   transition: transform .5s var(--ease);
 }
 .cookie-banner.is-visible { transform: translate(-50%, 0); }
+.cookie-text p + p { margin-top: 4px; }
+.cookie-actions { flex: none; display: flex; gap: 10px; }
+/* "Rifiuta" e "Accetta" con lo stesso peso visivo (linee guida Garante) */
 .cookie-btn {
-  flex: none;
-  padding: 12px 40px;
-  border: 0;
+  min-width: 120px;
+  padding: 12px 20px;
+  border: 2px solid var(--panel-dark);
   border-radius: 8px;
   background: var(--panel-dark);
   color: #fff;
-  font-size: 1rem;
+  font-size: .95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color .2s;
+  transition: background-color .2s, border-color .2s;
 }
-.cookie-btn:hover { background: var(--btn-hover); }
-@media (max-width: 560px) {
-  .cookie-banner { flex-direction: column; text-align: center; }
+.cookie-btn:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
+.cookie-close {
+  position: absolute;
+  top: 6px; right: 8px;
+  width: 36px; height: 36px;
+  border: 0;
+  background: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
 }
+.cookie-close:hover { color: var(--ink); }
+@media (max-width: 640px) {
+  .cookie-banner { flex-direction: column; align-items: stretch; padding: 20px 20px 16px; }
+  .cookie-text { padding-right: 24px; }
+  .cookie-actions .cookie-btn { flex: 1; }
+}
+
+.link-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Link legali in fondo alla home */
+.home-legal {
+  position: absolute;
+  left: 0; right: 0; bottom: 10px;
+  z-index: 1;
+  text-align: center;
+  font-size: .75rem;
+}
+.home-legal a, .home-legal .link-btn {
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, .85);
+  color: var(--ink);
+}
+
+/* Checkbox privacy nel form */
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: #333;
+  cursor: pointer;
+}
+.consent input {
+  flex: none;
+  width: 18px; height: 18px;
+  margin-top: 1px;
+  accent-color: var(--btn);
+}
+
+/* ==========================================================================
+   Privacy e cookie policy
+   ========================================================================== */
+.legal {
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+.legal .page-title { margin-bottom: 6px; }
+.legal-updated { margin-bottom: 24px; font-size: .85rem; color: var(--muted); }
+.legal h2 {
+  margin: 2.2em 0 .6em;
+  font-size: 1.15rem;
+  font-weight: 600;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+.legal p + p, .legal ul + p, .legal .table-wrap + p { margin-top: .9em; }
+.legal ul { margin: .6em 0 0 1.3em; }
+.legal li + li { margin-top: .3em; }
+.legal-toc {
+  margin: 24px 0;
+  padding: 18px 22px;
+  background: #f6f6f6;
+  border-left: 4px solid var(--red);
+}
+.legal-toc ol { margin-left: 1.2em; columns: 2 220px; }
+.legal-toc a { text-decoration: none; }
+.legal-toc a:hover { text-decoration: underline; }
+.table-wrap { overflow-x: auto; margin-top: .8em; }
+.legal table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.legal th, .legal td { padding: 10px 12px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.legal th { background: #f6f6f6; font-weight: 600; }
+.legal code { font-size: .85em; }
+.legal .ext-link { background: none; cursor: pointer; }
+.legal .ext-link:hover { background: var(--ink); }
 
 /* ==========================================================================
    Animazioni
@@ -648,15 +769,6 @@ main { flex: 1; }
 @keyframes band-grow-y { from { transform: scaleY(0); } }
 @keyframes band-grow-x { from { transform: scaleX(0); } }
 @keyframes offset-in { from { opacity: 0; transform: translate(-18px, -18px); } }
-
-/* Comparsa allo scroll (attivata da main.js solo se JS è disponibile) */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
-  transition-delay: var(--delay, 0s);
-}
-.js .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
