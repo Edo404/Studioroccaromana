@@ -103,8 +103,11 @@ Note Windows: clonare in un percorso **corto** (git fallisce con "'$GIT_DIR' too
 in cartelle molto annidate). Gli avvisi git "LF will be replaced by CRLF" sono innocui.
 
 ## Da fare / aperto
-- Il proprietario deve rivedere `privacy.html` (non è una consulenza legale) e in Google Analytics
-  impostare conservazione dati 14 mesi, Google Signals e pubblicità disattivati.
+- `privacy.html`: il proprietario l'ha rivista (29/09/2026) e per ora va bene così (non è una consulenza legale).
+- Google Analytics (fatto il 29/09/2026): conservazione dati eventi a 14 mesi e Google Signals disattivato.
+  La personalizzazione annunci non serve: "Flussi di dati" non compare nel pannello e Signals è spento.
+  Per cambiare l'ID di misurazione: `GA_ID` in `js/main.js`, poi aggiornare `?v=` in tutti gli HTML.
 - FormSubmit ha server extra-UE: eventualmente valutare un servizio europeo.
-- Pubblicazione su Aruba (se non ancora fatta): caricare via FTP `*.html`, `css/`, `js/`, `img/`, `fonts/`,
-  `favicon.ico` e `web.config`. La vecchia cartella `images/` sul server non serve più. `tools/` e `CLAUDE.md` non vanno caricati.
+- Pubblicazione su Aruba: caricamento FTP del redesign completato con successo (29/09/2026).
+  Per i prossimi aggiornamenti caricare solo i file modificati (`*.html`, `css/`, `js/`, `img/`, `fonts/`,
+  `favicon.ico`, `web.config`). La vecchia cartella `images/` sul server non serve più. `tools/` e `CLAUDE.md` non vanno caricati.
