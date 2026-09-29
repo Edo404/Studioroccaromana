@@ -47,9 +47,9 @@ Le pagine sono state generate una volta da uno script non committato; ora si mod
   `img/bg-home-mobile.webp`, ritaglio verticale della parte fotografica (palco/pubblico/mixer), perché il
   centro dell'immagine desktop è un bagliore bianco: su mobile deve vedersi la foto.
   Link legali in basso nella home (P.IVA, privacy, preferenze cookie) senza sfondo bianco.
-- **Chi siamo (desktop)**: testo + footer devono stare in una sola schermata senza scroll
-  (font del testo legato anche all'altezza con `vh`; niente `min-height: 100vh` sul `main`).
-  Verificato a 1280×720, 1366×768, 1440×900, 1536×730, 1920×1080.
+- **Chi siamo (desktop ≥1025px e altezza ≥560px)**: `body.about` è alto esattamente 100vh con `overflow: hidden`,
+  testo in `clamp(14px, min(1.25vw, 2.3vh), 22px)`: header + testo + footer sempre in una schermata, senza scroll.
+- Il banner cookie ha `display:flex`, quindi serve `.cookie-banner[hidden] { display: none; }` (non toglierlo).
 - **Griglie**: desktop = banda orizzontale dietro ogni riga di foto (`.card-media::before`);
   mobile (≤600px) = una colonna con banda verticale centrata (`.roster::before`).
   ⚠️ L'animazione di comparsa deve animare solo `.card-img`/`.card-name`, **mai** `.card`:

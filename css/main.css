@@ -504,11 +504,16 @@ main { flex: 1; }
   align-items: center;
   padding-bottom: clamp(24px, 4vh, 48px);
 }
+/* Desktop: pagina alta esattamente come la finestra (header + testo + footer),
+   nessuno scroll. Il testo si ridimensiona in base all'altezza della finestra. */
+@media (min-width: 1025px) and (min-height: 560px) {
+  body.about { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; }
+  .about main { min-height: 0; }
+}
 .about-text {
   max-width: 980px;
   margin: 0 auto;
-  /* il testo si adatta anche all'altezza: su desktop pagina + footer stanno in una schermata */
-  font-size: clamp(.95rem, min(.9rem + .6vw, 2.35vh), 1.4rem);
+  font-size: clamp(14px, min(1.25vw, 2.3vh), 22px);
   line-height: 1.7;
   text-align: justify;
   hyphens: auto;
@@ -658,6 +663,7 @@ main { flex: 1; }
   transition: transform .5s var(--ease);
 }
 .cookie-banner.is-visible { transform: translate(-50%, 0); }
+.cookie-banner[hidden] { display: none; }  /* display:flex altrimenti ignora l'attributo hidden */
 .cookie-text p + p { margin-top: 4px; }
 .cookie-actions { flex: none; display: flex; gap: 10px; }
 /* "Rifiuta" e "Accetta" con lo stesso peso visivo (linee guida Garante) */
