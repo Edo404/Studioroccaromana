@@ -41,7 +41,12 @@ Le pagine sono state generate una volta da uno script non committato; ora si mod
   bottone form `#790405` (hover `#343567`).
 - **Home desktop**: bande verticali, blocchi concentrici alle bande e centrati sullo sfondo;
   blocchi grandi `clamp(280px, min(32vw, 58vh), 520px)`. **Mobile (≤1024px)**: bande orizzontali.
-  Sfondo sempre scurito (`--shade`, nero 30%) su desktop e mobile.
+  Sfondo sempre scurito (`--shade`, nero 30%) su desktop e mobile. Su mobile lo sfondo è inquadrato
+  a `14% center` perché il centro della foto è un bagliore bianco: deve vedersi la foto (palco/pubblico/mixer).
+  Link legali in basso nella home (P.IVA, privacy, preferenze cookie) senza sfondo bianco.
+- **Chi siamo (desktop)**: testo + footer devono stare in una sola schermata senza scroll
+  (font del testo legato anche all'altezza con `vh`; niente `min-height: 100vh` sul `main`).
+  Verificato a 1280×720, 1366×768, 1440×900, 1536×730, 1920×1080.
 - **Griglie**: desktop = banda orizzontale dietro ogni riga di foto (`.card-media::before`);
   mobile (≤600px) = una colonna con banda verticale centrata (`.roster::before`).
   ⚠️ L'animazione di comparsa deve animare solo `.card-img`/`.card-name`, **mai** `.card`:

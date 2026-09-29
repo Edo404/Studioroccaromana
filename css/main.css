@@ -269,6 +269,7 @@ main { flex: 1; }
     --tile: min(72vw, 36svh, 340px);
     --band: calc(var(--tile) * .38);
     background-image: var(--shade), url("../img/bg-home-sm.webp");
+    background-position: 0 0, 14% center;
   }
   .home-choices {
     grid-template-columns: var(--tile);
@@ -496,11 +497,16 @@ main { flex: 1; }
 @media (max-width: 1024px), (hover: none) {
   .about { background-image: url("../img/bg-chisiamo-sm.webp"); background-attachment: scroll; }
 }
-.about .page { min-height: 100vh; display: grid; align-items: center; }
+.about .page {
+  display: grid;
+  align-items: center;
+  padding-bottom: clamp(24px, 4vh, 48px);
+}
 .about-text {
   max-width: 980px;
   margin: 0 auto;
-  font-size: clamp(1.05rem, .9rem + .6vw, 1.4rem);
+  /* il testo si adatta anche all'altezza: su desktop pagina + footer stanno in una schermata */
+  font-size: clamp(.95rem, min(.9rem + .6vw, 2.35vh), 1.4rem);
   line-height: 1.7;
   text-align: justify;
   hyphens: auto;
@@ -702,8 +708,7 @@ main { flex: 1; }
   font-size: .75rem;
 }
 .home-legal span, .home-legal a, .home-legal .link-btn {
-  padding: 2px 6px;
-  background: rgba(255, 255, 255, .85);
+  padding: 2px 4px;
   color: var(--ink);
 }
 
