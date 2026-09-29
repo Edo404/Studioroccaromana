@@ -15,6 +15,8 @@ sono file di Aruba, non modificarli). Repo: https://github.com/Edo404/Studiorocc
 - `js/main.js` — unico script, vanilla ES5-compatibile: menu mobile, header allo scroll,
   animazioni in ingresso (IntersectionObserver), consenso cookie + Google Analytics.
 - `img/` — tutte le immagini, in **WebP** (foto artisti 800×800, sfondi 2400px + versione `-sm` 1100px).
+- **Cache busting**: nei 21 HTML i link sono `css/main.css?v=AAAAMMGG` e `js/main.js?v=AAAAMMGG`.
+  Quando modifichi CSS o JS aggiorna la data in tutte le pagine, altrimenti i visitatori vedono la versione in cache.
 - `fonts/` — Montserrat variabile (400–600) **ospitato in locale**: non reintrodurre Google Fonts (GDPR).
 - Lingua del sito e dei commenti nel codice: **italiano**.
 
@@ -41,8 +43,9 @@ Le pagine sono state generate una volta da uno script non committato; ora si mod
   bottone form `#790405` (hover `#343567`).
 - **Home desktop**: bande verticali, blocchi concentrici alle bande e centrati sullo sfondo;
   blocchi grandi `clamp(280px, min(32vw, 58vh), 520px)`. **Mobile (≤1024px)**: bande orizzontali.
-  Sfondo sempre scurito (`--shade`, nero 30%) su desktop e mobile. Su mobile lo sfondo è inquadrato
-  a `14% center` perché il centro della foto è un bagliore bianco: deve vedersi la foto (palco/pubblico/mixer).
+  Sfondo sempre scurito (`--shade`, nero 30%) su desktop e mobile. Su mobile si usa
+  `img/bg-home-mobile.webp`, ritaglio verticale della parte fotografica (palco/pubblico/mixer), perché il
+  centro dell'immagine desktop è un bagliore bianco: su mobile deve vedersi la foto.
   Link legali in basso nella home (P.IVA, privacy, preferenze cookie) senza sfondo bianco.
 - **Chi siamo (desktop)**: testo + footer devono stare in una sola schermata senza scroll
   (font del testo legato anche all'altezza con `vh`; niente `min-height: 100vh` sul `main`).

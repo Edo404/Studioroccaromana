@@ -268,8 +268,10 @@ main { flex: 1; }
   .home {
     --tile: min(72vw, 36svh, 340px);
     --band: calc(var(--tile) * .38);
-    background-image: var(--shade), url("../img/bg-home-sm.webp");
-    background-position: 0 0, 14% center;
+    /* ritaglio verticale della parte fotografica (palco, pubblico, mixer):
+       il centro dell'immagine desktop è una sfumatura bianca */
+    background-image: var(--shade), url("../img/bg-home-mobile.webp");
+    background-position: center;
   }
   .home-choices {
     grid-template-columns: var(--tile);
