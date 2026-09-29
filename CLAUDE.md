@@ -1,8 +1,9 @@
 # Studio Rocca Romana — sito web
 
 Sito vetrina statico di **Studio Rocca Romana** (produzione artistica/musicale, Angelo De Cave).
-Online su https://www.studioroccaromana.it, hosting **Aruba** (Windows/IIS: `web.config` e `.user.ini`
-sono file di Aruba, non modificarli). Repo: https://github.com/Edo404/Studioroccaromana
+Online su https://www.studioroccaromana.it, hosting **Aruba** (Windows/IIS 10). `.user.ini` è di Aruba: non modificarlo.
+`web.config`: la riga `compilation tempDirectory` è di Aruba (non toccarla); la sezione `staticContent` è nostra
+e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Repo: https://github.com/Edo404/Studioroccaromana
 
 ## Branch
 - `main` = versione attuale del sito: il redesign (settembre 2026) è stato mergiato il 29/09/2026.
@@ -106,4 +107,4 @@ in cartelle molto annidate). Gli avvisi git "LF will be replaced by CRLF" sono i
   impostare conservazione dati 14 mesi, Google Signals e pubblicità disattivati.
 - FormSubmit ha server extra-UE: eventualmente valutare un servizio europeo.
 - Pubblicazione su Aruba (se non ancora fatta): caricare via FTP `*.html`, `css/`, `js/`, `img/`, `fonts/`,
-  `favicon.ico`. La vecchia cartella `images/` sul server non serve più. `tools/` e `CLAUDE.md` non vanno caricati.
+  `favicon.ico` e `web.config`. La vecchia cartella `images/` sul server non serve più. `tools/` e `CLAUDE.md` non vanno caricati.
