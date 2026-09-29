@@ -90,9 +90,10 @@ Campi nascosti: `_subject`, `_honey` (antispam).
 
 ## Sviluppo locale
 ```bash
-python -m http.server 5500 --bind 127.0.0.1
+python tools/serve.py
 ```
-poi apri http://127.0.0.1:5500. Verificare sempre desktop (1440×900), tablet (768) e mobile (375×812).
+poi apri http://127.0.0.1:5500. `tools/serve.py` invia `Cache-Control: no-store`: con il semplice
+`python -m http.server` il browser tiene in cache HTML/CSS vecchi e le modifiche non si vedono. Verificare sempre desktop (1440×900), tablet (768) e mobile (375×812).
 
 Note Windows: clonare in un percorso **corto** (git fallisce con "'$GIT_DIR' too big"/"Filename too long"
 in cartelle molto annidate). Gli avvisi git "LF will be replaced by CRLF" sono innocui.
