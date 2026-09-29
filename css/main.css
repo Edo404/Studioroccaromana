@@ -49,6 +49,8 @@ body {
   color: var(--ink);
   background: #fff;
   line-height: 1.6;
+  /* le bande delle griglie escono di 100vw: fallback "hidden" per Safari < 16, che non supporta "clip" */
+  overflow-x: hidden;
   overflow-x: clip;
   animation: page-in .5s var(--ease) both;
 }

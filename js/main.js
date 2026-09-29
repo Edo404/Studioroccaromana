@@ -108,15 +108,20 @@
     });
   }
 
+  // un solo timer alla volta: riaprire il banner annulla una chiusura in corso e viceversa
+  var bannerTimer = null;
+
   function showBanner(delay) {
     if (!banner) return;
+    clearTimeout(bannerTimer);
     banner.hidden = false;
-    setTimeout(function () { banner.classList.add("is-visible"); }, delay || 30);
+    bannerTimer = setTimeout(function () { banner.classList.add("is-visible"); }, delay || 30);
   }
 
   function hideBanner() {
+    clearTimeout(bannerTimer);
     banner.classList.remove("is-visible");
-    setTimeout(function () { banner.hidden = true; }, 600);
+    bannerTimer = setTimeout(function () { banner.hidden = true; }, 600);
   }
 
   var consent = readConsent();
