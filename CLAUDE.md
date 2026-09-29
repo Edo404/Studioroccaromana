@@ -5,8 +5,11 @@ Online su https://www.studioroccaromana.it, hosting **Aruba** (Windows/IIS: `web
 sono file di Aruba, non modificarli). Repo: https://github.com/Edo404/Studioroccaromana
 
 ## Branch
-- `main` = versione vecchia (2022), non toccare senza richiesta esplicita.
-- `redesign` = nuova versione (settembre 2026), dove si lavora. Non ancora pubblicata né mergiata.
+- `main` = versione attuale del sito: il redesign (settembre 2026) è stato mergiato il 29/09/2026.
+  La vecchia versione del 2022 resta solo nella storia git (commit `8c16784`).
+- `redesign` = branch di lavoro del redesign, allineato a `main` al momento del merge.
+- Push/merge su `main` solo su richiesta esplicita del proprietario.
+- Nessuna pubblicazione automatica: il sito online su Aruba cambia solo con il caricamento via FTP.
 
 ## Stack e principi
 - HTML/CSS/JS puri, **nessun build step, nessuna dipendenza** (niente jQuery/GSAP/framework).
@@ -102,5 +105,5 @@ in cartelle molto annidate). Gli avvisi git "LF will be replaced by CRLF" sono i
 - Il proprietario deve rivedere `privacy.html` (non è una consulenza legale) e in Google Analytics
   impostare conservazione dati 14 mesi, Google Signals e pubblicità disattivati.
 - FormSubmit ha server extra-UE: eventualmente valutare un servizio europeo.
-- Quando approvato: merge `redesign` → `main` e pubblicazione su Aruba caricando `*.html`, `css/`, `js/`,
-  `img/`, `fonts/`, `favicon.ico` (la vecchia cartella `images/` non serve più).
+- Pubblicazione su Aruba (se non ancora fatta): caricare via FTP `*.html`, `css/`, `js/`, `img/`, `fonts/`,
+  `favicon.ico`. La vecchia cartella `images/` sul server non serve più. `tools/` e `CLAUDE.md` non vanno caricati.
