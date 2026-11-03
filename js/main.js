@@ -45,6 +45,7 @@
     document.body.insertBefore(sentinel, document.body.firstChild);
     new IntersectionObserver(function (entries) {
       header.classList.toggle("is-scrolled", !entries[0].isIntersecting);
+      root.classList.toggle("scrolled", !entries[0].isIntersecting);
     }).observe(sentinel);
   }
 
@@ -56,9 +57,12 @@
     for (var i = (rows - 1) * 4; i < items.length; i++) items[i].classList.add("is-last-row");
   });
 
-  /* ---------- Fila artisti in home: scorrimento automatico ----------
-     Si duplica l'elenco (copia aria-hidden, senza tab) e il CSS lo fa scorrere
-     in loop. Con "riduci animazioni" resta una fila scorrevole a mano. */
+  /* ---------- Fila artisti in home: scorre da sola ed è trascinabile ----------
+     Si lavora sullo scroll orizzontale nativo (dito e trackpad funzionano da soli);
+     il mouse si trascina con i pointer events. L'elenco è duplicato (copia
+     aria-hidden) e la posizione viene riportata di mezza lunghezza, quindi il
+     giro non ha stacchi. Dopo un gesto l'autoscorrimento riparte da solo.
+     Con "riduci animazioni" non parte: resta una fila scorrevole a mano. */
   var crate = document.querySelector(".crate-list");
   if (crate && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
     Array.prototype.slice.call(crate.children).forEach(function (li) {
@@ -69,6 +73,100 @@
       crate.appendChild(copy);
     });
     crate.classList.add("is-auto");
+    crate.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+    var SPEED = 50;                 // px al secondo
+    var half = 0, pos = 0, last = 0, busyUntil = 0, hovering = false, down = false, moved = 0, lastX = 0, inView = true;
+
+    var measure = function () {
+      var n = crate.children.length / 2;
+      half = crate.children[n].offsetLeft - crate.children[0].offsetLeft;
+    };
+    var normalize = function () {   // tiene lo scroll dentro una finestra larga "half": il contenuto è periodico
+      var max = crate.scrollWidth - crate.clientWidth;
+      var lo = Math.max(0, (max - half) / 2);
+      if (half <= 0 || max < half) return;
+      var sl = crate.scrollLeft;
+      if (sl < lo) { crate.scrollLeft = sl + half; pos = crate.scrollLeft; }
+      else if (sl >= lo + half) { crate.scrollLeft = sl - half; pos = crate.scrollLeft; }
+    };
+    var start = function () {
+      measure();
+      // parte dalla prima foto: la seconda serie coincide con la prima
+      pos = crate.scrollLeft = crate.children[crate.children.length / 2].offsetLeft - parseFloat(getComputedStyle(crate).paddingLeft || 0);
+      normalize();
+    };
+
+    var busy = function (ms) { busyUntil = performance.now() + (ms || 1500); };
+
+    crate.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") hovering = true; });
+    crate.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") hovering = false; });
+    crate.addEventListener("focusin", function () { hovering = true; });
+    crate.addEventListener("focusout", function () { hovering = false; });
+    crate.addEventListener("scroll", normalize, { passive: true });   // vale anche per dito, tastiera e focus
+    crate.addEventListener("wheel", function () { busy(); }, { passive: true });
+    crate.addEventListener("touchstart", function () { busy(3000); }, { passive: true });
+    crate.addEventListener("touchend", function () { busy(); }, { passive: true });
+
+    // trascinamento col mouse
+    crate.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      down = true; moved = 0; lastX = e.clientX;
+      crate.setPointerCapture(e.pointerId);
+      crate.classList.add("is-dragging");
+    });
+    crate.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      var dx = e.clientX - lastX;
+      lastX = e.clientX;
+      moved += Math.abs(dx);
+      crate.scrollLeft -= dx;
+      pos = crate.scrollLeft;
+      normalize();
+      busy();
+    });
+    var up = function () {
+      if (!down) return;
+      down = false;
+      crate.classList.remove("is-dragging");
+      busy();
+    };
+    crate.addEventListener("pointerup", up);
+    crate.addEventListener("pointercancel", up);
+    // dopo un trascinamento non si deve aprire il link sotto il mouse
+    crate.addEventListener("click", function (e) {
+      if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; }
+    }, true);
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) { inView = entries[0].isIntersecting; }).observe(crate);
+    }
+
+    var tick = function (now) {
+      var dt = Math.min(now - last, 50);
+      last = now;
+      if (inView && half > 0) {
+        var cur = crate.scrollLeft;
+        if (Math.abs(cur - pos) > 1.5) {          // qualcuno ha scrollato (dito, inerzia, tastiera)
+          pos = cur;
+          busy(1200);
+        }
+        if (!down && !hovering && now > busyUntil) {
+          pos += SPEED * dt / 1000;
+          crate.scrollLeft = pos;
+          normalize();
+        }
+      }
+      requestAnimationFrame(tick);
+    };
+
+    var go = function () {
+      start();
+      last = performance.now();
+      requestAnimationFrame(tick);
+    };
+    if (document.readyState === "complete") go(); else window.addEventListener("load", go);
+    window.addEventListener("resize", function () { measure(); });
   }
 
   /* ---------- Animazioni in ingresso allo scroll ---------- */

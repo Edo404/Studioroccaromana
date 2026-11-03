@@ -449,19 +449,21 @@ main { flex: 1; }
 }
 .crate-list li { flex: 0 0 clamp(200px, 22vw, 320px); scroll-snap-align: start; }
 
-/* Autoscorrimento: main.js duplica le foto (copia nascosta agli screen reader)
-   e la pista scorre di metà larghezza in loop. Pausa con mouse o tastiera. */
-.crate { overflow: hidden; }
+/* Autoscorrimento + trascinamento: lo gestisce main.js sullo scroll orizzontale
+   nativo (dito, trackpad, mouse con trascinamento). Senza JS o con "riduci
+   animazioni" resta una normale fila scorrevole a mano. */
 .crate-list.is-auto {
-  width: max-content;
-  margin-left: var(--gutter);
-  padding: 0 0 24px;
-  overflow: visible;
   scroll-snap-type: none;
-  animation: crate-run 80s linear infinite;
+  scrollbar-width: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
-@media (hover: hover) { .crate:hover .crate-list.is-auto { animation-play-state: paused; } }
-.crate:focus-within .crate-list.is-auto { animation-play-state: paused; }
+.crate-list.is-auto::-webkit-scrollbar { display: none; }
+.crate-list.is-auto img { -webkit-user-drag: none; }
+@media (hover: hover) {
+  .crate-list.is-auto { cursor: grab; }
+  .crate-list.is-dragging { cursor: grabbing; }
+}
 .crate-list li:nth-child(even) { margin-top: clamp(16px, 3vw, 48px); }
 .crate-list a { display: block; text-decoration: none; }
 .crate-list img {
@@ -492,6 +494,47 @@ main { flex: 1; }
 }
 .home-legal a, .home-legal .link-btn { color: var(--muted); transition: color .2s; }
 .home-legal a:hover, .home-legal .link-btn:hover { color: var(--ink); }
+
+/* Freccia che dice che la home continua: sparisce appena si scorre */
+.scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  z-index: 50;
+  display: grid;
+  place-items: end center;
+  width: 44px;
+  height: 56px;
+  margin-left: -22px;
+  color: var(--lav);
+  text-decoration: none;
+  transition: opacity .4s, color .2s;
+  animation: page-in 1s 1.4s var(--ease) both;
+}
+.scroll-hint::before {          /* il gambo */
+  content: "";
+  position: absolute;
+  top: 6px;
+  width: 1px;
+  height: 30px;
+  background: currentColor;
+  animation: hint-line 2.2s var(--ease) infinite;
+  transform-origin: top;
+}
+.scroll-hint::after {           /* la punta */
+  content: "";
+  width: 12px;
+  height: 12px;
+  margin-bottom: 8px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  rotate: 45deg;
+  animation: hint-tip 2.2s var(--ease) infinite;
+}
+.scroll-hint:hover, .scroll-hint:focus-visible { color: var(--accent); }
+.scrolled .scroll-hint { opacity: 0; pointer-events: none; }
+@keyframes hint-line { 0% { transform: scaleY(0); opacity: 0; } 35% { opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+@keyframes hint-tip  { 0%, 30% { transform: translateY(-14px); opacity: 0; } 65% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(4px); opacity: 0; } }
 
 /* comparsa delle sezioni sotto l'hero */
 .js .reveal:not(.is-in) { opacity: 0; transform: translateY(32px); }
@@ -965,7 +1008,6 @@ main { flex: 1; }
 @keyframes rise-in   { from { opacity: 0; transform: translateY(28px); } }
 @keyframes reveal-up { from { opacity: 0; clip-path: inset(12% 0 0 0); transform: translateY(24px); } }
 @keyframes spin      { to { transform: rotate(360deg); } }
-@keyframes crate-run { to { transform: translateX(calc(-50% - 7px)); } }   /* 7px = metà del gap tra le due serie */
 @keyframes tile-in   { from { opacity: 0; transform: translateY(40px); } }
 
 /* ==========================================================================
