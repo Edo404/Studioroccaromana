@@ -576,7 +576,7 @@ main { flex: 1; }
   animation: hint-line 2.2s var(--ease) infinite;
 }
 .scroll-hint:hover, .scroll-hint:focus-visible { color: var(--accent); }
-.scrolled .scroll-hint { opacity: 0; pointer-events: none; }
+.scrolled .scroll-hint { animation: none; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .4s, visibility 0s .4s; }   /* animation: none, sennò il fill-mode "both" di page-in tiene la riga visibile */
 @keyframes hint-line { 0% { transform: scaleY(0); opacity: 0; } 35% { opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
 /* comparsa delle sezioni sotto l'hero */
