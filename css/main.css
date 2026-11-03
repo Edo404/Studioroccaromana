@@ -440,15 +440,9 @@ main { flex: 1; }
   letter-spacing: -.03em;
   text-transform: uppercase;
 }
-.side-label::after {
-  content: "\2192";
-  color: var(--accent);
-  transition: transform .5s var(--ease);
-}
 @media (hover: hover) {
   .side:hover, .side:focus-visible { rotate: 0deg; translate: 0 -10px; }
   .side:hover .side-img img, .side:focus-visible .side-img img { transform: scale(1.06); }
-  .side:hover .side-label::after, .side:focus-visible .side-label::after { transform: translateX(10px); }
   .hero:has(.side:hover) .vinyl-disc,
   .hero:has(.side:focus-visible) .vinyl-disc { animation-play-state: paused; }
 }
@@ -594,7 +588,6 @@ main { flex: 1; }
   .sides { width: auto; grid-template-columns: 1fr 1fr; padding: clamp(24px, 5svh, 56px) 0 0; gap: 12px; }
   .side, .side--a, .side--b { width: auto; rotate: none; translate: none; margin: 0; }
   .side-label { font-size: clamp(.7rem, 3.3vw, 1.1rem); }
-  .side-label::after { display: none; }
   .since { grid-template-columns: 1fr; gap: 16px; }
   .since-year { font-size: clamp(4.4rem, 26vw, 9rem); }
 }
