@@ -9,8 +9,7 @@ e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Re
 - `main` = versione attuale del sito: il redesign (settembre 2026) è stato mergiato il 29/09/2026.
   La vecchia versione del 2022 resta solo nella storia git (commit `8c16784`).
 - `redesign` = branch di lavoro del redesign di settembre, allineato a `main` al momento del merge.
-- `redesign-palco` = seconda revisione grafica (novembre 2026, direzione "backstage"): non ancora in `main`,
-  da far approvare al proprietario. Stessi contenuti, stesse URL, cambia solo il design.
+- `redesign-palco` = seconda revisione grafica (novembre 2026, direzione "backstage"), **unita in `main` in locale il 3 novembre 2026** su richiesta del proprietario (commit di merge `ada55c9`); push su GitHub e upload su Aruba non ancora fatti. Stessi contenuti italiani e stesse URL; in più le versioni EN/ES e il selettore lingua.
 - Push/merge su `main` solo su richiesta esplicita del proprietario.
 - Nessuna pubblicazione automatica: il sito online su Aruba cambia solo con il caricamento via FTP.
 
