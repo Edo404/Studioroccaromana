@@ -147,18 +147,25 @@
     crate.addEventListener("touchstart", function () { busy(3000); }, { passive: true });
     crate.addEventListener("touchend", function () { busy(); }, { passive: true });
 
-    // trascinamento col mouse
+    // trascinamento col mouse: il mouse viene "catturato" solo dopo 6 px di
+    // movimento, altrimenti il clic non arriverebbe più al link sotto il cursore
+    var dragging = false, pid = null, startX = 0;
     crate.addEventListener("pointerdown", function (e) {
       if (e.pointerType !== "mouse" || e.button !== 0) return;
-      down = true; moved = 0; lastX = e.clientX;
-      crate.setPointerCapture(e.pointerId);
-      crate.classList.add("is-dragging");
+      down = true; dragging = false; moved = 0; lastX = startX = e.clientX; pid = e.pointerId;
     });
     crate.addEventListener("pointermove", function (e) {
       if (!down) return;
       var dx = e.clientX - lastX;
       lastX = e.clientX;
       moved += Math.abs(dx);
+      if (!dragging) {
+        if (moved <= 5) return;
+        dragging = true;
+        try { crate.setPointerCapture(pid); } catch (err) { /* ignora */ }
+        crate.classList.add("is-dragging");
+        dx = e.clientX - startX;     // recupera il tratto fatto prima della soglia
+      }
       crate.scrollLeft -= dx;
       pos = crate.scrollLeft;
       normalize();
@@ -167,7 +174,11 @@
     var up = function () {
       if (!down) return;
       down = false;
-      crate.classList.remove("is-dragging");
+      if (dragging) {
+        dragging = false;
+        try { crate.releasePointerCapture(pid); } catch (err) { /* ignora */ }
+        crate.classList.remove("is-dragging");
+      }
       busy();
     };
     crate.addEventListener("pointerup", up);
