@@ -8,7 +8,9 @@ e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Re
 ## Branch
 - `main` = versione attuale del sito: il redesign (settembre 2026) è stato mergiato il 29/09/2026.
   La vecchia versione del 2022 resta solo nella storia git (commit `8c16784`).
-- `redesign` = branch di lavoro del redesign, allineato a `main` al momento del merge.
+- `redesign` = branch di lavoro del redesign di settembre, allineato a `main` al momento del merge.
+- `redesign-palco` = seconda revisione grafica (novembre 2026, direzione "backstage"): non ancora in `main`,
+  da far approvare al proprietario. Stessi contenuti, stesse URL, cambia solo il design.
 - Push/merge su `main` solo su richiesta esplicita del proprietario.
 - Nessuna pubblicazione automatica: il sito online su Aruba cambia solo con il caricamento via FTP.
 
@@ -21,16 +23,16 @@ e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Re
 - `img/` — tutte le immagini, in **WebP** (foto artisti 800×800, sfondi 2400px + versione `-sm` 1100px).
 - **Cache busting**: nei 21 HTML i link sono `css/main.css?v=AAAAMMGG` e `js/main.js?v=AAAAMMGG`.
   Quando modifichi CSS o JS aggiorna la data in tutte le pagine, altrimenti i visitatori vedono la versione in cache.
-- `fonts/` — Montserrat variabile (400–600) **ospitato in locale**: non reintrodurre Google Fonts (GDPR).
+- `fonts/` — Bricolage Grotesque variabile (peso 300–800, larghezza 75–100%) **ospitato in locale**: non reintrodurre Google Fonts (GDPR). `unbounded-latin.woff2` = Unbounded (peso 600–900), usato per **tutti i titoli display** (`--font-display`).
 - Lingua del sito e dei commenti nel codice: **italiano**.
 
 ## Pagine
 | File | Contenuto |
 |---|---|
-| `index.html` | Home: sfondo scurito + 2 blocchi (Artisti rosso, Intrattenimento verde) centrati su bande |
-| `artisti.html` | Griglia: sezioni "Musica" e "Cinema, TV e spettacolo" (banda rossa) |
-| `intrattenimento.html` | Griglia (banda verde) |
-| `chisiamo.html` | Testo su sfondo fotografico |
+| `index.html` | Home: titolo + vinile (senza logo) + due copertine (concettualmente Lato A/B, ma senza etichette visibili), "1986", cassetta delle foto degli artisti |
+| `artisti.html` | Griglia: sezioni "Musica" e "Cinema, TV e spettacolo" |
+| `intrattenimento.html` | Griglia |
+| `chisiamo.html` | Titolo gigante + testo, una sola schermata su desktop |
 | `contatti.html` | Info sedi + form ingaggio (formsubmit.co) |
 | `privacy.html` | Informativa privacy GDPR + cookie policy |
 | pagine bio | `edodeange`, `drgam`, `marcondiro`, `giannidavoli`, `notedaoscar`, `letizya`, `antonellaponziani`, `moniapalmieri`, `massimilianopazza`, `antoniofiorillo`, `marcocarena`, `manuelalettieri`, `lucanasti` (esiste ma **non** è linkata nella griglia, voluto), `bellaepoca`, `spaziovasco` |
@@ -41,27 +43,56 @@ Header, footer e banner cookie sono **duplicati in ogni pagina** (nessun templat
 se li modifichi, applica la stessa modifica a tutti i 21 file HTML (es. con uno script/sed).
 Le pagine sono state generate una volta da uno script non committato; ora si modificano a mano.
 
-## Design (requisiti del proprietario)
-- Mantenere l'impostazione originale, design semplice. Colori:
-  `--red #ff7979` (artisti), `--green #a9cd99` (intrattenimento), pannelli contatti `#6971c0`/`#a1a6d1`,
-  bottone form `#790405` (hover `#343567`).
-- **Home desktop**: bande verticali, blocchi concentrici alle bande e centrati sullo sfondo;
-  blocchi grandi `clamp(280px, min(32vw, 58vh), 520px)`. **Mobile (≤1024px)**: bande orizzontali.
-  Sfondo sempre scurito (`--shade`, nero 30%) su desktop e mobile. Su mobile si usa
-  `img/bg-home-mobile.webp`, ritaglio verticale della parte fotografica (palco/pubblico/mixer), perché il
-  centro dell'immagine desktop è un bagliore bianco: su mobile deve vedersi la foto.
-  Link legali in basso nella home (P.IVA, privacy, preferenze cookie) senza sfondo bianco.
+## Design (direzione "backstage", branch `redesign-palco`)
+Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, nuovi layout. Il vecchio vincolo
+"rosso/verde, bande, impostazione originale" **non vale più** su questo branch; vale ancora per `main` finché non si fa il merge.
+- **Tema unico scuro**, mai chiaro. **Palette ricavata dal logo originale** (campionata dai pixel di `img/logo.webp`):
+  blu notte `--bg #080a26` / `--bg-2 #0f1340` (dal blu reale del logo `#17217f`, tenuto come `--blue` per i bagliori),
+  lavanda `--lav #ced3f7` (alone del logo), testo `--ink #eceeff`, secondario `--muted #a9aed6`.
+  **Un solo accento**: il rosso del logo schiarito per il fondo scuro, `--accent #e00808` (testo su accento: `--on-accent`, blu notte).
+  Niente verde, niente altri colori di marca.
+- **Forma**: angoli vivi (raggio 0) ovunque; eccezioni tonde: il logo, il vinile e i campi e il bottone "Invia messaggio" del form contatti (input `50px`, textarea `28px`) e il bottone "Contatti" della navigazione (pillola `border-radius: 50px`, stesso rosso `--accent` di "Romana", testo `--on-accent`; si applica a `a[href="contatti.html"]` in `.main-nav`). Il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
+- **Etichette "Lato A/Lato B"**: rimosse dalla home (richiesta del titolare); restano solo nei commenti del codice.
+- **Colori vinile**: hover Artisti (`data-side="a"`) = **rosso** del logo, hover Intrattenimento (`data-side="b"`) = **viola** del logo; a riposo nero (`n`). Copertine home = illustrazioni rosso (Artisti) e viola (Intrattenimento), vedi `img/bg-*.webp`.
+- **Aggiornamento colori (nero)**: sfondo **nero puro** (`--bg #000`, `--bg-2 #0d0d12`, `--on-accent #000`, theme-color `#000000`), nessun bagliore blu sullo sfondo; **tutti i testi bianchi** (`--ink`, `--ink-2`, `--muted`, `--lav` = `#fff`), tranne i rossi (accento). Il vinile della home è **nero a riposo** (`data-side="n"`), diventa blu notte con hover/focus su Artisti (`data-side="a"`) e rosso su Intrattenimento (`data-side="b"`), e torna nero quando si esce (JS: `pointerleave`/`blur`, `pageshow` riporta a `n`). Le descrizioni sopra che citano blu notte come sfondo sono superate da questo punto.
+- **Multilingua (IT / EN / ES)**: l'**italiano è il testo scritto nell'HTML** (SEO e fallback senza JS); inglese e spagnolo sono in `js/lang-en.js` e `js/lang-es.js` (oggetti `chiave -> testo/HTML`, caricati solo se serve). Gli elementi traducibili hanno `data-i18n="chiave"` (sostituisce l'innerHTML; `<title>` il testo) oppure `data-i18n-attr="attributo:chiave;..."` (aria-label, placeholder, content dei meta). Le descrizioni meta delle pagine artista si ricavano dal testo tradotto della bio. **Quando aggiungi/modifichi un testo: aggiorna HTML italiano + le due chiavi in lang-en.js e lang-es.js** (stesso markup, stessi link). Nomi di artisti, titoli di film e dati di contatto non si traducono. La lingua iniziale la decide uno script inline nell'`<head>` di ogni pagina: scelta salvata in `localStorage` chiave `srr-lang` (solo quando l'utente la sceglie col selettore), altrimenti la prima lingua del browser tra it/en/es, altrimenti **inglese**; `<html lang>` e `data-lang` seguono la lingua; finché la traduzione arriva `html.i18n-wait` nasconde il body (timeout di sicurezza 3 s). Il selettore è una bandierina rotonda (SVG inline) creata da `main.js` in fondo alla nav, a destra di "Contatti" (su mobile: tre pillole nel menu). `privacy.html` ha la riga cookie `srr-lang` e la versione tradotta riporta che prevale l'italiano. Le pagine usano chiavi con prefissi: `nav.*`, `f.*` (footer/form), `cookie.*`, `home.*`, `about.*`, `c.*` (contatti), `art.*`, `intro.*`, `back.*`, `pv.*` (privacy), `bio.<pagina>.<n>`, `t.*`/`d.*` (title/description).
+- **Tipografia**: Bricolage Grotesque; titoli, "1986", nomi artista, etichette copertine e parola dell'intro in Unbounded (`--font-display`). Titoli display = Unbounded peso 800, maiuscolo, interlinea ~1 (classi nell'elenco in cima a `main.css`; è un carattere largo: dimensioni più piccole dei vecchi condensati). Intro: `--fs` 16 (Artisti) e 8.6 (Intrattenimento).
+- **Home ("il disco sul piatto")**: `.hero` = `h1` gigante a sinistra ("Romana" in accento) + un **vinile** (`.vinyl`, solo CSS) tagliato dal bordo
+  destro che gira lento (24 s) con un'**etichetta centrale a tinta unita** (`.vinyl-disc::after`; il logo compare solo nell'header) + due **copertine di vinile**
+  quadrate (`.side`, una sopra l'altra e sfalsate: "Lato A" Artisti con `bg-artisti.webp`, "Lato B" Intrattenimento con `bg-intrattenimento.webp`,
+  foto Unsplash 1800x720 ritagliate al centro, licenza libera). **Il disco ha due lati**: `data-side="a"` su `.hero` = blu notte (default, com'era all'inizio),
+  `"b"` = rosso. Passando (mouse/focus) o cliccando una copertina `main.js` fa girare il disco (`rotateY`, 0,7 s, classe `is-flipping` su
+  `.vinyl-flip`) e cambia colore a metà giro (variabili `--d1/--d2/--d3` su `.vinyl`); il clic aspetta il giro e poi apre la pagina (Ctrl/Cmd+clic
+  no). Con `prefers-reduced-motion` il colore cambia senza giro. Su mobile le due copertine stanno affiancate.
+  All'hover il disco si ferma (`:has`) e la copertina si raddrizza. Sotto: `.since` ("1986" in accento + frase tratta da Chi siamo) e
+  `.crate` ("I nostri artisti": fila delle 12 foto di `artisti.html` che **scorre da sola** in loop (~65 px/s, `SPEED` in `main.js`) ed è **trascinabile**:
+  dito e trackpad via scroll nativo, mouse via pointer events con `cursor: grab` (⚠️ il mouse va "catturato" solo dopo 6 px di movimento: catturarlo subito fa perdere il clic sui link della fila); dopo un gesto riparte da sola dopo ~1,5 s, pausa con mouse sopra
+  o focus. Lo fa `main.js` su `scrollLeft` (non più con animazione CSS): duplica gli elementi (copia `aria-hidden`) e riporta lo scroll di
+  mezza lunghezza (`half`) per il giro senza stacchi. Con `prefers-reduced-motion` non parte: resta una fila scorrevole a mano.
+  Se si aggiunge un artista in `artisti.html` aggiungerlo anche qui). È l'unica striscia in movimento del sito (non aggiungerne altre). Le sezioni `.reveal` compaiono con l'IntersectionObserver. Una **riga** CSS senza punta (`.scroll-hint`, link a `#storia`, fissa in basso al centro) dice che la home continua e sparisce appena si scorre (`html.scrolled`, messa dalla sentinella dell'header). Non c'è più la fascia scorrevole dei nomi.
+  Mobile (≤1024px): colonna unica, il vinile resta dietro/accanto al titolo.
+- **Griglie (Artisti: "Musica" e "Cinema, TV e spettacolo"; Intrattenimento)**: "artist wall" copiato da redlightmanagement.com:
+  righe da **4** tessere quadrate quasi a contatto (gap 4px; 2 per riga sotto i 700px), foto a colori, **nome sempre visibile** in basso a sinistra.
+  All'hover (solo `hover: hover` e ≥700px) la tessera raddoppia (`scale(2)`, il nome ha `scale(.5)` per restare uguale) restando agganciata
+  al suo angolo: colonne 1-2 crescono verso destra, 3-4 verso sinistra; le tessere dell'ultima riga (classe `is-last-row`, messa da `main.js`
+  quando le righe sono ≥2) crescono verso l'alto. Le immagini delle tessere sono `loading="eager"` (con `lazy` l'ultima compariva in ritardo).
+  La comparsa anima solo `.card-img`.
+- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (**Artisti: rosso, classe `intro--red`, `--red-intro #d22320` + bianco; Intrattenimento: viola `--purple #9043a9` + bianco del logo** (colori invertiti rispetto alla prima versione, per coerenza con le nuove copertine: Artisti rosso, Intrattenimento viola). Il rosso è il rosso dominante della foto schiarito dello stesso 15,7% con cui il viola è più chiaro della foto Artisti, vedi commento in `:root`) si chiudono sulla parola
+  "ARTISTI" o "INTRATTENIMENTO" e poi si aprono; il taglio passa dentro le lettere, ogni metà le disegna a colori invertiti. Idea di
+  wmg.com/songwriters, ma più rapida (1,5 s). Markup `.intro` subito dopo `<body>` (la grandezza della parola è `--fs` in `vh`, regolata per
+  lunghezza della parola); CSS puro in fondo a `main.css`; `main.js` la chiude con clic/Esc o dopo 1,6 s. Uno script inline nell'`<head>`
+  mette `no-intro` su `<html>` se si arriva da una pagina bio (così "← Artisti" non la rifà). Disattivata con `prefers-reduced-motion`.
+  ⚠️ Non rimettere l'animazione di dissolvenza su `body`: sbiadirebbe anche l'intro (ora è su `main` e `.site-footer`).
+- **Bio**: foto sticky a sinistra (4:5), nome enorme + testo a destra; su mobile in colonna.
 - **Chi siamo (desktop ≥1025px e altezza ≥560px)**: `body.about` è alto esattamente 100vh con `overflow: hidden`,
   testo in `clamp(14px, min(1.25vw, 2.3vh), 22px)`: header + testo + footer sempre in una schermata, senza scroll.
-- Il banner cookie ha `display:flex`, quindi serve `.cookie-banner[hidden] { display: none; }` (non toglierlo).
-- **Griglie**: desktop = banda orizzontale dietro ogni riga di foto (`.card-media::before`);
-  mobile (≤600px) = una colonna con banda verticale centrata (`.roster::before`).
-  ⚠️ L'animazione di comparsa deve animare solo `.card-img`/`.card-name`, **mai** `.card`:
-  se la card ha opacity/transform diventa un contesto di impilamento e la banda copre le foto vicine
-  (bug già risolto, non reintrodurlo).
-- **Bio**: foto a sinistra (sticky su desktop) con riquadro colorato della sezione, testo a destra;
-  link "← Artisti/Intrattenimento"; su mobile tutto in colonna.
-- Animazioni sobrie; tutto rispetta `prefers-reduced-motion`.
+- **Contatti**: due colonne su sfondo scuro (info a sinistra, form a destra), campi `--bg-2` con bordo ben visibile, bottone in accento.
+- Il banner cookie ha `display:flex`, quindi serve `.cookie-banner[hidden] { display: none; }` (non toglierlo). "Rifiuta" e "Accetta" identici.
+- **Animazioni**: solo `transform`/`opacity`/`clip-path`; tutto rispetta `prefers-reduced-motion`. Nessun listener `scroll`
+  (l'header usa un IntersectionObserver su una sentinella). Niente cursori personalizzati.
+- Rimossi perché troppo sbiaditi per un tema scuro: `bg-home*.webp`, `bg-chisiamo*.webp`, `tile-*.webp`. Le classi `theme-red`/`theme-green`
+  restano nell'HTML ma non hanno più effetto.
+- Nei testi visibili nuovi non usare il trattino lungo (em-dash).
 
 ## Privacy / legale (non peggiorare)
 - **Google Analytics 4** `G-EJW26R73HE`: caricato da `main.js` **solo dopo "Accetta"**. Nessuno snippet gtag nell'`<head>`.
@@ -89,7 +120,7 @@ Campi nascosti: `_subject`, `_honey` (antispam).
    im.thumbnail((800, 800), Image.LANCZOS); im.save("img/nome-cognome.webp", "WEBP", quality=80, method=6)
    ```
 2. Copia una pagina bio esistente (es. `marcocarena.html`), cambia `<title>`, meta description/og, canonical,
-   immagine, `<h1>`, testo, link esterno e la classe tema (`theme-red` artisti / `theme-green` intrattenimento).
+   immagine, `<h1>`, testo, link esterno e la classe tema (la classe tema resta per compatibilità, oggi non ha effetto grafico).
 3. Aggiungi un `<li class="card" style="--delay:…">` nella griglia giusta (`--delay` = 0, .08, .16, .24s per colonna).
 
 ## Sviluppo locale
