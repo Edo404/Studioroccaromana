@@ -57,10 +57,12 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   `img/bg-intrattenimento.webp` (1800x720, 2.5:1, foto Unsplash di palchi: blu/viola per Artisti, rosso per Intrattenimento; licenza Unsplash,
   nessuna attribuzione richiesta), UNA sola fascia scorrevole coi nomi (non aggiungerne altre). Su mobile (≤1024px) tutto in colonna.
 - **Griglie (Artisti: "Musica" e "Cinema, TV e spettacolo"; Intrattenimento)**: "artist wall" copiato da redlightmanagement.com:
-  tessere quadrate a contatto (gap 4px), `repeat(auto-fill, minmax(200px,1fr))` su desktop (6 per riga a 1440px; 150px sotto i 1100px),
-  foto a colori; all'hover velo scuro + nome in basso a sinistra; su touch (`hover: none`) il nome è sempre visibile.
-  `.cards--few` (Intrattenimento, poche tessere) = tessere più grandi. La comparsa anima solo `.card-img`.
-- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (rosso accento / lavanda) si chiudono sulla parola
+  righe da **4** tessere quadrate quasi a contatto (gap 4px; 2 per riga sotto i 700px), foto a colori, **nome sempre visibile** in basso a sinistra.
+  All'hover (solo `hover: hover` e ≥700px) la tessera raddoppia (`scale(2)`, il nome ha `scale(.5)` per restare uguale) restando agganciata
+  al suo angolo: colonne 1-2 crescono verso destra, 3-4 verso sinistra; le tessere dell'ultima riga (classe `is-last-row`, messa da `main.js`
+  quando le righe sono ≥2) crescono verso l'alto. Le immagini delle tessere sono `loading="eager"` (con `lazy` l'ultima compariva in ritardo).
+  La comparsa anima solo `.card-img`.
+- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (viola `--purple #9043a9` e bianco del logo) si chiudono sulla parola
   "ARTISTI" o "INTRATTENIMENTO" e poi si aprono; il taglio passa dentro le lettere, ogni metà le disegna a colori invertiti. Idea di
   wmg.com/songwriters, ma più rapida (1,5 s). Markup `.intro` subito dopo `<body>` (la grandezza della parola è `--fs` in `vh`, regolata per
   lunghezza della parola); CSS puro in fondo a `main.css`; `main.js` la chiude con clic/Esc o dopo 1,6 s. Uno script inline nell'`<head>`

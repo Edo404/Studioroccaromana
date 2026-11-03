@@ -48,6 +48,14 @@
     }).observe(sentinel);
   }
 
+  /* ---------- Griglia: l'ultima riga (da 4) si ingrandisce verso l'alto ---------- */
+  document.querySelectorAll(".cards").forEach(function (list) {
+    var items = list.querySelectorAll(".card");
+    var rows = Math.ceil(items.length / 4);
+    if (rows < 2) return;
+    for (var i = (rows - 1) * 4; i < items.length; i++) items[i].classList.add("is-last-row");
+  });
+
   /* ---------- Animazioni in ingresso allo scroll ---------- */
   var targets = document.querySelectorAll(".card, .roster");
   if ("IntersectionObserver" in window) {

@@ -33,6 +33,8 @@
   --bg: #080a26;               /* blu notte, derivato dal blu del logo */
   --bg-2: #0f1340;             /* superfici rialzate (form, banner, tabelle) */
   --blue: #17217f;             /* blu del logo: atmosfera e fondi */
+  --purple: #9043a9;           /* viola del logo (jukebox): intro Artisti / Intrattenimento */
+  --white: #fff;               /* bianco del logo (il cerchio) */
   --lav: #ced3f7;              /* lavanda del logo */
   --ink: #eceeff;              /* testo */
   --ink-2: #d4d8f5;            /* testo corrente */
@@ -403,73 +405,68 @@ main { flex: 1; }
 
 /* ==========================================================================
    Griglia artisti / intrattenimento
-   "Artist wall": tessere quadrate quasi a contatto, nome in sovrimpressione
-   al passaggio del mouse (stesso schema di redlightmanagement.com)
+   "Artist wall" come redlightmanagement.com: righe da 4 tessere quadrate quasi
+   a contatto, nome sempre visibile; all'hover la tessera raddoppia (2x2)
+   restando agganciata al suo angolo e copre le vicine. Le tessere dell'ultima
+   riga crescono verso l'alto (classe is-last-row messa da main.js).
    ========================================================================== */
 .roster + .roster { margin-top: clamp(64px, 9vw, 128px); }
 .roster .page-title { margin-bottom: clamp(20px, 3vw, 40px); }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 4px;
   list-style: none;
 }
-@media (min-width: 1100px) {
-  .cards { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-}
-/* rosters con poche tessere (Intrattenimento): tessere più grandi */
-.cards--few { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
-@media (min-width: 1100px) {
-  .cards--few { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+@media (min-width: 700px) {
+  .cards { grid-template-columns: repeat(4, 1fr); }
 }
 
-.card { position: relative; }
+.card { position: relative; aspect-ratio: 1; }
 .js .card:not(.is-in) .card-img { opacity: 0; transform: translateY(40px); }
 .card.is-in .card-img { animation: tile-in .9s var(--ease) var(--delay, 0s) backwards; }
 .card a {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
-  aspect-ratio: 1;
   overflow: hidden;
   background: var(--bg-2);
   text-decoration: none;
+  transform-origin: 0 0;
+  transition: transform .3s var(--ease);
 }
 .card-media, .card-img { position: absolute; inset: 0; }
-.card-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform .9s var(--ease);
-}
-.card a::after {              /* velo scuro all'hover */
+.card-img img { width: 100%; height: 100%; object-fit: cover; }
+.card a::after {              /* velo in basso: il nome si legge sempre */
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8, 10, 38, .88), rgba(8, 10, 38, .3) 60%, rgba(8, 10, 38, .15));
-  opacity: 0;
-  transition: opacity .4s;
+  background: linear-gradient(to top, rgba(8, 10, 38, .88), rgba(8, 10, 38, 0) 50%);
 }
 .card-name {
   position: absolute;
   left: 6%; right: 6%; bottom: 5%;
   z-index: 1;
-  font-size: clamp(1.15rem, 1.7vw, 1.7rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   line-height: 1.02;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .35s, transform .5s var(--ease);
+  transform-origin: 0 100%;
+  transition: transform .3s var(--ease);
 }
-.card a:hover::after,
-.card a:focus-visible::after { opacity: 1; }
-.card a:hover .card-img img,
-.card a:focus-visible .card-img img { transform: scale(1.05); }
-.card a:hover .card-name,
-.card a:focus-visible .card-name { opacity: 1; transform: none; }
 .card a:focus-visible { outline-offset: -4px; }
-/* Su schermi touch non c'è hover: nome sempre visibile */
-@media (hover: none) {
-  .card a::after { opacity: 1; }
-  .card-name { opacity: 1; transform: none; }
+
+/* ancoraggio dell'ingrandimento: colonne 1-2 a sinistra, 3-4 a destra */
+.card:nth-child(4n + 3) a, .card:nth-child(4n) a { transform-origin: 100% 0; }
+.card.is-last-row:nth-child(4n + 1) a, .card.is-last-row:nth-child(4n + 2) a { transform-origin: 0 100%; }
+.card.is-last-row:nth-child(4n + 3) a, .card.is-last-row:nth-child(4n) a { transform-origin: 100% 100%; }
+
+@media (min-width: 700px) and (hover: hover) {
+  .card:hover { z-index: 5; }
+  .card:hover a { transform: scale(2); }
+  .card:hover .card-name { transform: scale(.5); }   /* il nome non cambia di dimensione */
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:hover a, .card:hover .card-name { transform: none; }
 }
 
 /* ==========================================================================
@@ -848,7 +845,7 @@ main { flex: 1; }
 
 /* ==========================================================================
    Intro a schermo intero (Artisti / Intrattenimento)
-   Due metà oblique si chiudono sulla parola e poi si aprono. Il taglio passa
+   Due metà oblique (viola e bianco del logo) si chiudono sulla parola e poi si aprono. Il taglio passa
    in mezzo alle lettere: ogni metà le disegna con i colori invertiti.
    Idea ripresa da wmg.com/songwriters. Durata totale 1,5 s.
    ========================================================================== */
@@ -875,8 +872,8 @@ main { flex: 1; }
   width: 50%;
   overflow: hidden;
 }
-.intro-half--a { left: 0;  background: var(--accent); color: var(--lav);   animation: intro-a 1.5s linear both; }
-.intro-half--b { right: 0; background: var(--lav);    color: var(--accent); animation: intro-b 1.5s linear both; }
+.intro-half--a { left: 0;  background: var(--purple); color: var(--white);  animation: intro-a 1.5s linear both; }
+.intro-half--b { right: 0; background: var(--white);  color: var(--purple); animation: intro-b 1.5s linear both; }
 .intro-word {
   position: absolute;
   top: 50%;
