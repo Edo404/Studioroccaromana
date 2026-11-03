@@ -24,6 +24,17 @@
     });
   }
 
+  /* ---------- Intro a schermo intero (Artisti / Intrattenimento) ----------
+     L'animazione è tutta in CSS; qui basta poterla chiudere con un clic o Esc
+     e toglierla dal layout a fine corsa. */
+  var intro = document.querySelector(".intro");
+  if (intro) {
+    var endIntro = function () { intro.classList.add("is-done"); };
+    intro.addEventListener("click", endIntro);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") endIntro(); });
+    setTimeout(endIntro, 1600);
+  }
+
   /* ---------- Header compatto allo scroll ---------- */
   var header = document.querySelector(".site-header");
   if (header && "IntersectionObserver" in window) {

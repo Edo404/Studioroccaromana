@@ -46,15 +46,26 @@ Le pagine sono state generate una volta da uno script non committato; ora si mod
 ## Design (direzione "backstage", branch `redesign-palco`)
 Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, nuovi layout. Il vecchio vincolo
 "rosso/verde, bande, impostazione originale" **non vale più** su questo branch; vale ancora per `main` finché non si fa il merge.
-- **Tema unico scuro**, mai chiaro: `--bg #0d0c0e`, `--bg-2 #18161a`, testo `--ink #efece6`, secondario `--muted #a8a49d`.
-  **Un solo accento**: vermiglio `--accent #ff4a2b` (testo su accento: `--on-accent` scuro). Niente verde, niente altri colori di marca.
+- **Tema unico scuro**, mai chiaro. **Palette ricavata dal logo originale** (campionata dai pixel di `img/logo.webp`):
+  blu notte `--bg #080a26` / `--bg-2 #0f1340` (dal blu reale del logo `#17217f`, tenuto come `--blue` per i bagliori),
+  lavanda `--lav #ced3f7` (alone del logo), testo `--ink #eceeff`, secondario `--muted #a9aed6`.
+  **Un solo accento**: il rosso del logo schiarito per il fondo scuro, `--accent #ee4b3f` (testo su accento: `--on-accent`, blu notte).
+  Niente verde, niente altri colori di marca.
 - **Forma**: angoli vivi (raggio 0) ovunque; unica eccezione il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
 - **Tipografia**: Bricolage Grotesque. Titoli display = peso 800, `font-stretch: 75%`, maiuscolo, interlinea ~.85 (classi nell'elenco in cima a `main.css`).
-- **Home**: `h1` gigante a sinistra ("Romana" in accento), due pannelli larghi sfalsati a destra, UNA sola fascia scorrevole coi nomi
-  (non aggiungerne altre). Le immagini `tile-*.webp` hanno il testo scritto dentro: il CSS le ritaglia in alto (`object-position: top`,
-  `aspect-ratio` ≥ 2.4) così non si vede. Su mobile (≤1024px) tutto in colonna.
-- **Griglie**: 12 colonne con ritmo asimmetrico 5+3+4 / 4+5+3 (`nth-child(6n+…)`), foto in bianco e nero che prendono colore all'hover.
-  Mobile ≤560px: 2 colonne, la prima di ogni terzina a tutta larghezza. Anche qui la comparsa anima solo `.card-img`/`.card-name`.
+- **Home**: `h1` gigante a sinistra ("Romana" in accento), due pannelli larghi sfalsati a destra con le foto `img/bg-artisti.webp` e
+  `img/bg-intrattenimento.webp` (1800x720, 2.5:1, foto Unsplash di palchi: blu/viola per Artisti, rosso per Intrattenimento; licenza Unsplash,
+  nessuna attribuzione richiesta), UNA sola fascia scorrevole coi nomi (non aggiungerne altre). Su mobile (≤1024px) tutto in colonna.
+- **Griglie (Artisti: "Musica" e "Cinema, TV e spettacolo"; Intrattenimento)**: "artist wall" copiato da redlightmanagement.com:
+  tessere quadrate a contatto (gap 4px), `repeat(auto-fill, minmax(200px,1fr))` su desktop (6 per riga a 1440px; 150px sotto i 1100px),
+  foto a colori; all'hover velo scuro + nome in basso a sinistra; su touch (`hover: none`) il nome è sempre visibile.
+  `.cards--few` (Intrattenimento, poche tessere) = tessere più grandi. La comparsa anima solo `.card-img`.
+- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (rosso accento / lavanda) si chiudono sulla parola
+  "ARTISTI" o "INTRATTENIMENTO" e poi si aprono; il taglio passa dentro le lettere, ogni metà le disegna a colori invertiti. Idea di
+  wmg.com/songwriters, ma più rapida (1,5 s). Markup `.intro` subito dopo `<body>` (la grandezza della parola è `--fs` in `vh`, regolata per
+  lunghezza della parola); CSS puro in fondo a `main.css`; `main.js` la chiude con clic/Esc o dopo 1,6 s. Uno script inline nell'`<head>`
+  mette `no-intro` su `<html>` se si arriva da una pagina bio (così "← Artisti" non la rifà). Disattivata con `prefers-reduced-motion`.
+  ⚠️ Non rimettere l'animazione di dissolvenza su `body`: sbiadirebbe anche l'intro (ora è su `main` e `.site-footer`).
 - **Bio**: foto sticky a sinistra (4:5), nome enorme + testo a destra; su mobile in colonna.
 - **Chi siamo (desktop ≥1025px e altezza ≥560px)**: `body.about` è alto esattamente 100vh con `overflow: hidden`,
   testo in `clamp(14px, min(1.25vw, 2.3vh), 22px)`: header + testo + footer sempre in una schermata, senza scroll.
@@ -62,7 +73,7 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
 - Il banner cookie ha `display:flex`, quindi serve `.cookie-banner[hidden] { display: none; }` (non toglierlo). "Rifiuta" e "Accetta" identici.
 - **Animazioni**: solo `transform`/`opacity`/`clip-path`; tutto rispetta `prefers-reduced-motion`. Nessun listener `scroll`
   (l'header usa un IntersectionObserver su una sentinella). Niente cursori personalizzati.
-- Non più usati ma ancora in `img/`: `bg-home*.webp`, `bg-chisiamo*.webp` (troppo sbiaditi per un tema scuro). Le classi `theme-red`/`theme-green`
+- Rimossi perché troppo sbiaditi per un tema scuro: `bg-home*.webp`, `bg-chisiamo*.webp`, `tile-*.webp`. Le classi `theme-red`/`theme-green`
   restano nell'HTML ma non hanno più effetto.
 - Nei testi visibili nuovi non usare il trattino lungo (em-dash).
 
