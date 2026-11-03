@@ -185,6 +185,22 @@ main { flex: 1; }
 
 .nav-toggle { display: none; }
 
+/* "Contatti" è l'unico bottone della navigazione: stesso rosso di "Romana"
+   (--accent), pillola con raggio 50. Unica eccezione tonda al raggio 0 del sito
+   (insieme al logo e al vinile). */
+.main-nav a[href="contatti.html"] {
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  transition: background-color .25s, transform .25s var(--ease);
+}
+.main-nav a[href="contatti.html"]::after { display: none; }
+.main-nav a[href="contatti.html"]:hover { background: var(--ink); color: var(--on-accent); transform: translateY(-1px); }
+.main-nav a[href="contatti.html"]:active { transform: scale(.97); }
+.main-nav a[href="contatti.html"][aria-current="page"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+
 @media (max-width: 1024px) {
   :root { --header-h: 72px; }
   .site-header.is-scrolled { --header-h: 64px; }
@@ -237,6 +253,15 @@ main { flex: 1; }
   }
   .main-nav a::after { display: none; }
   .main-nav a[aria-current="page"] { color: var(--accent); }
+  .main-nav a[href="contatti.html"] {
+    display: inline-block;
+    margin: 18px var(--gutter) 22px;
+    padding: 14px 34px;
+    font-size: 1.2rem;
+    letter-spacing: .04em;
+    color: var(--on-accent);
+  }
+  .main-nav a[href="contatti.html"][aria-current="page"] { color: var(--on-accent); }
 
   .nav-open .site-header { background: var(--bg); }
 }
