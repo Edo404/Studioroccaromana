@@ -48,15 +48,15 @@
   /* Intro Intrattenimento: rosso dominante della foto (#b51f1b, L 40,9%) schiarito
      dello stesso 15,7% con cui il viola dell'intro Artisti (L 46,3%) è più chiaro
      della sua foto (#613d8f, L 40,0%): L 47,3% -> #d22320 */
-  --red-intro: #d22320;
+  --red-intro: #e00808;
   --lav: #fff;                 /* lavanda del logo */
   --ink: #fff;              /* testo */
   --ink-2: #fff;            /* testo corrente */
   --muted: #fff;            /* testo secondario */
   --line: rgba(206, 211, 247, .16);
   --line-strong: rgba(206, 211, 247, .5);
-  --accent: #ee4b3f;           /* unico accento: il rosso del logo, schiarito per il fondo scuro */
-  --on-accent: #000;        /* testo su sfondo accento */
+  --accent: #e00808;           /* unico accento: il rosso dell'illustrazione Artisti (campionato dai pixel di img/bg-artisti.webp) */
+  --on-accent: #fff;        /* testo su sfondo accento */
 
   --header-h: 84px;
   --gutter: clamp(16px, 4vw, 56px);
@@ -209,7 +209,7 @@ main { flex: 1; }
   transition: background-color .25s, transform .25s var(--ease);
 }
 .main-nav a[href="contatti.html"]::after { display: none; }
-.main-nav a[href="contatti.html"]:hover { background: var(--ink); color: var(--on-accent); transform: translateY(-1px); }
+.main-nav a[href="contatti.html"]:hover { background: var(--ink); color: #000; transform: translateY(-1px); }
 .main-nav a[href="contatti.html"]:active { transform: scale(.97); }
 .main-nav a[href="contatti.html"][aria-current="page"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 
@@ -338,7 +338,7 @@ main { flex: 1; }
   perspective: 2400px;
   animation: page-in 1.2s .2s var(--ease) both;
 }
-.hero[data-side="a"] .vinyl { --d1: #d8453a; --d2: #6a1613; --d3: #2f0908; }   /* lato A (hover Artisti): rosso del logo */
+.hero[data-side="a"] .vinyl { --d1: #e00808; --d2: #650303; --d3: #290101; }   /* lato A (hover Artisti): stesso rosso dell'illustrazione */
 .hero[data-side="b"] .vinyl { --d1: #7d3598; --d2: #3a1552; --d3: #1d0a2e; }   /* lato B (hover Intrattenimento): viola del logo */
 .vinyl-flip { position: absolute; inset: 0; }
 .vinyl-flip.is-flipping { animation: disc-flip .7s linear both; }
@@ -444,14 +444,6 @@ main { flex: 1; }
   content: "\2192";
   color: var(--accent);
   transition: transform .5s var(--ease);
-}
-.side-tag {
-  display: block;
-  margin-top: 10px;
-  font-size: .85rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 @media (hover: hover) {
   .side:hover, .side:focus-visible { rotate: 0deg; translate: 0 -10px; }
@@ -879,7 +871,7 @@ main { flex: 1; }
 .field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(238, 75, 63, .35);
+  box-shadow: 0 0 0 3px rgba(224, 8, 8, .45);
 }
 .field input:user-invalid,
 .field textarea:user-invalid { border-color: #ff9a90; }
@@ -964,7 +956,7 @@ main { flex: 1; }
   cursor: pointer;
   transition: background-color .2s, color .2s;
 }
-.cookie-btn:hover { background: var(--ink); color: var(--on-accent); }
+.cookie-btn:hover { background: var(--ink); color: #000; }
 .cookie-close {
   position: absolute;
   top: 6px; right: 8px;
@@ -1140,4 +1132,77 @@ html:not(.no-intro) body:has(> .intro) .roster .page-title { animation: rise-in 
     transition-delay: 0s !important;
   }
   html { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   Selettore lingua: bandierina rotonda a destra di "Contatti" (IT / EN / ES).
+   Eccezione tonda al raggio 0, come il logo, il vinile e il bottone Contatti.
+   La lingua attiva è in <html data-lang>; il menu si apre al clic.
+   ========================================================================== */
+html.i18n-wait body { visibility: hidden; }   /* evita il lampo dell'italiano mentre arriva la traduzione */
+.main-nav .lang { position: relative; display: flex; align-items: center; }
+.lang svg { display: block; width: 28px; height: 28px; border-radius: 50%; }
+.lang-btn, .lang-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.lang-btn {
+  width: 36px; height: 36px;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.lang-btn svg { box-shadow: 0 0 0 1px var(--line-strong); }
+.lang-btn:hover, .lang.is-open .lang-btn { transform: scale(1.1); }
+.lang-btn:hover svg, .lang.is-open .lang-btn svg { box-shadow: 0 0 0 2px var(--accent); }
+.main-nav .lang-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 70;
+  min-width: 170px;
+  display: block;
+  padding: 6px;
+  list-style: none;
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .25s, transform .3s var(--ease), visibility 0s .3s;
+}
+.main-nav .lang.is-open .lang-menu { opacity: 1; visibility: visible; transform: none; transition: opacity .25s, transform .3s var(--ease); }
+.main-nav .lang-menu li + li { border-top: 0; }
+.lang-opt { width: 100%; padding: 10px 12px; font-size: .9rem; letter-spacing: .04em; text-align: left; }
+.lang-opt:hover, .lang-opt:focus-visible { background: rgba(255, 255, 255, .08); }
+.lang-opt[aria-current="true"] { color: var(--accent); }
+
+@media (max-width: 1024px) {
+  .main-nav .lang { display: block; padding: 4px var(--gutter) 24px; }
+  .lang-btn { display: none; }
+  .main-nav .lang-menu {
+    position: static;
+    display: flex;
+    gap: 10px;
+    min-width: 0;
+    padding: 0;
+    background: none;
+    border: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+  .main-nav .lang-menu li { flex: none; }
+  .main-nav .lang-menu li + li { border-top: 0; }
+  .lang-opt { width: auto; padding: 8px 14px 8px 8px; border: 1px solid var(--line-strong); border-radius: 50px; }
+  .lang-opt[aria-current="true"] { border-color: var(--accent); }
+  .main-nav li.lang { border-top: 0; }
 }

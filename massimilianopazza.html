@@ -16,27 +16,28 @@
   <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/main.css?v=20261103u">
+  <link rel="stylesheet" href="css/main.css?v=20261103y">
   <script>document.documentElement.classList.add("js")</script>
+  <script>(function(){var d=document.documentElement,l="";try{l=localStorage.getItem("srr-lang")||""}catch(e){}if(l!=="it"&&l!=="en"&&l!=="es"){l="en";var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"it"];for(var i=0;i<a.length;i++){var c=String(a[i]).slice(0,2).toLowerCase();if(c==="it"||c==="en"||c==="es"){l=c;break}}}d.setAttribute("data-lang",l);d.lang=l;if(l!=="it"){d.classList.add("i18n-wait");var s=document.createElement("script");s.src="js/lang-"+l+".js?v=20261103y";s.async=false;window.srrLangScript=s;document.head.appendChild(s)}})()</script>
   <!-- Google Analytics viene caricato da main.js solo dopo il consenso -->
-  <script src="js/main.js?v=20261103u" defer></script>
+  <script src="js/main.js?v=20261103y" defer></script>
 </head>
 <body>
 
-<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+<a data-i18n="skip" class="skip-link" href="#contenuto">Vai al contenuto</a>
 <header class="site-header site-header--solid">
   <div class="header-inner">
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri menu">
+    <button data-i18n-attr="aria-label:menu.open" class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Apri menu">
       <span></span><span></span><span></span>
     </button>
-    <nav class="main-nav" id="menu" aria-label="Principale">
+    <nav data-i18n-attr="aria-label:nav.main" class="main-nav" id="menu" aria-label="Principale">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="chisiamo.html">Chi siamo</a></li>
-        <li><a href="contatti.html">Contatti</a></li>
+        <li><a data-i18n="nav.home" href="index.html">Home</a></li>
+        <li><a data-i18n="nav.about" href="chisiamo.html">Chi siamo</a></li>
+        <li><a data-i18n="nav.contact" href="contatti.html">Contatti</a></li>
       </ul>
     </nav>
-    <a class="brand" href="index.html" aria-label="Studio Rocca Romana — Home">
+    <a data-i18n-attr="aria-label:brand" class="brand" href="index.html" aria-label="Studio Rocca Romana — Home">
       <img src="img/logo.webp" width="120" height="120" alt="Studio Rocca Romana">
     </a>
   </div>
@@ -48,25 +49,25 @@
       <img src="img/massimiliano-pazzaglia.webp" width="800" height="800" alt="Massimiliano Pazzaglia">
     </figure>
     <div class="bio-text">
-      <a class="back-link" href="artisti.html"><span aria-hidden="true">←</span> Artisti</a>
+      <a class="back-link" href="artisti.html"><span aria-hidden="true">←</span> <span data-i18n="back.a">Artisti</span></a>
       <h1>Massimiliano Pazzaglia</h1>
-      <p>Nato a Roma, figlio dello scrittore, regista e paroliere napoletano Riccardo Pazzaglia, è laureato in Lettere all'Università "La Sapienza", in Storia e critica del Cinema. Parla correntemente inglese e francese. Si diploma come attore nel 1985 presso il "Laboratorio di esercitazioni sceniche" diretto da Gigi Proietti. Debutta in teatro con lo stesso Proietti in “Cyrano”, e lavora ancora sotto la sua regìa nel 2003 in “Romeo e Giulietta”. Ha recitato in molte serie televisive come “Valeria medico legale 2”, “Linda e il brigadiere” nel 1997, “Don Matteo”, “Caravaggio”, “Distretto di Polizia 8”, “I Cesaroni”, “Squadra antimafia 4 - Palermo oggi”…e tanti altri. Diventa celebre grazie al personaggio del “Maresciallo Alfano" nella serie TV “Il maresciallo Rocca” dal 1996 fino all'ultima stagione, “Il maresciallo Rocca e l'amico d'infanzia” nel (2008). Nel Cinema ha lavorato con Federico Moccia, Alberto Sordi, Vincenzo Salemme, Jean-Marie Benjam..ecc..</p>
+      <p data-i18n="bio.massimilianopazza.1">Nato a Roma, figlio dello scrittore, regista e paroliere napoletano Riccardo Pazzaglia, è laureato in Lettere all'Università "La Sapienza", in Storia e critica del Cinema. Parla correntemente inglese e francese. Si diploma come attore nel 1985 presso il "Laboratorio di esercitazioni sceniche" diretto da Gigi Proietti. Debutta in teatro con lo stesso Proietti in “Cyrano”, e lavora ancora sotto la sua regìa nel 2003 in “Romeo e Giulietta”. Ha recitato in molte serie televisive come “Valeria medico legale 2”, “Linda e il brigadiere” nel 1997, “Don Matteo”, “Caravaggio”, “Distretto di Polizia 8”, “I Cesaroni”, “Squadra antimafia 4 - Palermo oggi”…e tanti altri. Diventa celebre grazie al personaggio del “Maresciallo Alfano" nella serie TV “Il maresciallo Rocca” dal 1996 fino all'ultima stagione, “Il maresciallo Rocca e l'amico d'infanzia” nel (2008). Nel Cinema ha lavorato con Federico Moccia, Alberto Sordi, Vincenzo Salemme, Jean-Marie Benjam..ecc..</p>
     </div>
   </article>
 </main>
 <footer class="site-footer">
-  <p>© Studio Rocca Romana – Angelo De Cave · P.IVA 02061370595 · <a href="privacy.html">Privacy e cookie policy</a> · <button type="button" class="link-btn" data-cookie-prefs>Preferenze cookie</button></p>
+  <p>© Studio Rocca Romana – Angelo De Cave · P.IVA 02061370595 · <a data-i18n="f.privacy" href="privacy.html">Privacy e cookie policy</a> · <button data-i18n="f.prefs" type="button" class="link-btn" data-cookie-prefs>Preferenze cookie</button></p>
 </footer>
 
 <div class="cookie-banner" role="dialog" aria-labelledby="cookie-title" hidden>
-  <button type="button" class="cookie-close" data-consent="deny" aria-label="Chiudi e rifiuta i cookie non necessari">×</button>
+  <button data-i18n-attr="aria-label:cookie.close" type="button" class="cookie-close" data-consent="deny" aria-label="Chiudi e rifiuta i cookie non necessari">×</button>
   <div class="cookie-text">
-    <p id="cookie-title"><strong>Rispettiamo la tua privacy</strong></p>
-    <p>Usiamo solo cookie tecnici necessari al funzionamento del sito e, <strong>solo se acconsenti</strong>, cookie analitici di Google Analytics per statistiche sulle visite. Puoi cambiare idea in qualsiasi momento da «Preferenze cookie» in fondo alla pagina. <a href="privacy.html#cookie">Leggi la cookie policy</a>.</p>
+    <p id="cookie-title"><strong data-i18n="cookie.title">Rispettiamo la tua privacy</strong></p>
+    <p data-i18n="cookie.text">Usiamo solo cookie tecnici necessari al funzionamento del sito e, <strong>solo se acconsenti</strong>, cookie analitici di Google Analytics per statistiche sulle visite. Puoi cambiare idea in qualsiasi momento da «Preferenze cookie» in fondo alla pagina. <a href="privacy.html#cookie">Leggi la cookie policy</a>.</p>
   </div>
   <div class="cookie-actions">
-    <button type="button" class="cookie-btn" data-consent="deny">Rifiuta</button>
-    <button type="button" class="cookie-btn" data-consent="accept">Accetta</button>
+    <button data-i18n="cookie.deny" type="button" class="cookie-btn" data-consent="deny">Rifiuta</button>
+    <button data-i18n="cookie.accept" type="button" class="cookie-btn" data-consent="accept">Accetta</button>
   </div>
 </div>
 </body>

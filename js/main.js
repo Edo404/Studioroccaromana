@@ -5,14 +5,92 @@
   var root = document.documentElement;
   root.classList.add("js");
 
+  /* ---------- Lingua (IT / EN / ES) ----------
+     L'italiano è il testo scritto nell'HTML. EN e ES stanno in js/lang-en.js e
+     js/lang-es.js (oggetti chiave -> testo) e si applicano agli elementi con
+     data-i18n="chiave" (testo/HTML interno) e data-i18n-attr="attributo:chiave".
+     La lingua iniziale la sceglie lo script nell'<head> (scelta salvata in
+     localStorage "srr-lang", altrimenti la lingua del browser, altrimenti EN);
+     qui si applicano le traduzioni e si costruisce il selettore a bandierina,
+     che salva la scelta dell'utente. */
+  var LANGS = ["it", "en", "es"];
+  var NAMES = { it: "Italiano", en: "English", es: "Español" };
+  var LABEL = { it: "Lingua", en: "Language", es: "Idioma" };
+  var JS_TXT = { en: { "menu.close": "Close menu" }, es: { "menu.close": "Cerrar menú" } };
+  var FLAGS = {
+    it: '<svg viewBox="0 0 24 24" aria-hidden="true"><g><rect width="8" height="24" fill="#009246"/><rect x="8" width="8" height="24" fill="#fff"/><rect x="16" width="8" height="24" fill="#ce2b37"/></g></svg>',
+    en: '<svg viewBox="0 0 24 24" aria-hidden="true"><g><rect width="24" height="24" fill="#012169"/><path d="M0 0L24 24M24 0L0 24" stroke="#fff" stroke-width="4.6"/><path d="M0 0L24 24M24 0L0 24" stroke="#c8102e" stroke-width="1.6"/><path d="M12 0V24M0 12H24" stroke="#fff" stroke-width="7"/><path d="M12 0V24M0 12H24" stroke="#c8102e" stroke-width="4"/></g></svg>',
+    es: '<svg viewBox="0 0 24 24" aria-hidden="true"><g><rect width="24" height="24" fill="#aa151b"/><rect y="6" width="24" height="12" fill="#f1bf00"/></g></svg>'
+  };
+  var lang = root.getAttribute("data-lang") || "it";
+  var ver = (document.currentScript && document.currentScript.src.split("?v=")[1]) || "";
+  var dict = function () { return (window.SRR_I18N && window.SRR_I18N[lang]) || null; };
+  var tr = function (key, fallback) {
+    var d = lang === "it" ? null : dict();
+    return (d && d[key]) || (JS_TXT[lang] && JS_TXT[lang][key]) || fallback;
+  };
+  var onLangChange = [];
+
+  var applyLang = function (l) {
+    lang = l;
+    root.lang = l;
+    root.setAttribute("data-lang", l);
+    var d = l === "it" ? null : dict();
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n]"), function (el) {
+      var isTitle = el.tagName === "TITLE";
+      if (el.__it === undefined) el.__it = isTitle ? el.textContent : el.innerHTML;
+      var v = d ? d[el.getAttribute("data-i18n")] : el.__it;
+      if (v == null) v = el.__it;
+      if (isTitle) el.textContent = v; else el.innerHTML = v;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-i18n-attr]"), function (el) {
+      if (!el.__itA) el.__itA = {};
+      el.getAttribute("data-i18n-attr").split(";").forEach(function (pair) {
+        var p = pair.split(":"), a = p[0], k = p[1];
+        if (el.__itA[a] === undefined) el.__itA[a] = el.getAttribute(a);
+        var v = d ? d[k] : el.__itA[a];
+        if (v == null) v = el.__itA[a];
+        el.setAttribute(a, v);
+      });
+    });
+    // pagine artista: la descrizione per i motori di ricerca segue il testo tradotto
+    var bioP = document.querySelector(".bio-text p"), md = document.querySelector('meta[name="description"]'), og = document.querySelector('meta[property="og:description"]');
+    if (bioP && md && !md.hasAttribute("data-i18n-attr")) {
+      if (md.__it === undefined) { md.__it = md.getAttribute("content"); if (og) og.__it = og.getAttribute("content"); }
+      var txt = md.__it;
+      if (l !== "it") {
+        txt = bioP.textContent.replace(/\s+/g, " ").trim();
+        if (txt.length > 157) txt = txt.slice(0, 156).replace(/\s+\S*$/, "") + "…";
+      }
+      md.setAttribute("content", txt);
+      if (og) og.setAttribute("content", txt);
+    }
+    root.classList.remove("i18n-wait");
+    onLangChange.forEach(function (fn) { fn(); });
+  };
+
+  var loadLang = function (l, done) {
+    if (l === "it" || (window.SRR_I18N && window.SRR_I18N[l])) { done(true); return; }
+    var s = (window.srrLangScript && window.srrLangScript.src.indexOf("lang-" + l + ".js") > -1) ? window.srrLangScript : null;
+    if (!s) { s = document.createElement("script"); s.src = "js/lang-" + l + ".js?v=" + ver; document.head.appendChild(s); }
+    s.addEventListener("load", function () { done(!!(window.SRR_I18N && window.SRR_I18N[l])); });
+    s.addEventListener("error", function () { done(false); });
+  };
+
+  var chooseLang = function (l) {
+    try { localStorage.setItem("srr-lang", l); } catch (e) { /* senza archiviazione la scelta vale solo per questa pagina */ }
+    loadLang(l, function (ok) { applyLang(ok ? l : "it"); });
+  };
+
   /* ---------- Menu mobile ---------- */
   var toggle = document.querySelector(".nav-toggle");
   if (toggle) {
     var setOpen = function (open) {
       root.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Chiudi menu" : "Apri menu");
+      toggle.setAttribute("aria-label", open ? tr("menu.close", "Chiudi menu") : tr("menu.open", "Apri menu"));
     };
+    onLangChange.push(function () { setOpen(root.classList.contains("nav-open")); });
     toggle.addEventListener("click", function () {
       setOpen(!root.classList.contains("nav-open"));
     });
@@ -22,6 +100,50 @@
     document.addEventListener("click", function (e) {
       if (!e.target.closest(".site-header")) setOpen(false);
     });
+  }
+
+  /* ---------- Selettore lingua: bandierina a destra di "Contatti" ---------- */
+  var navList = document.querySelector(".main-nav ul");
+  if (navList) {
+    var li = document.createElement("li");
+    li.className = "lang";
+    li.innerHTML = '<button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false"></button>' +
+      '<ul class="lang-menu">' + LANGS.map(function (l) {
+        return '<li><button type="button" class="lang-opt" data-set-lang="' + l + '" lang="' + l + '">' + FLAGS[l] + '<span>' + NAMES[l] + '</span></button></li>';
+      }).join("") + '</ul>';
+    navList.appendChild(li);
+    var langBtn = li.querySelector(".lang-btn");
+    var setLangMenu = function (open) {
+      li.classList.toggle("is-open", open);
+      langBtn.setAttribute("aria-expanded", String(open));
+    };
+    var syncLang = function () {
+      langBtn.innerHTML = FLAGS[lang];
+      langBtn.setAttribute("aria-label", LABEL[lang] + ": " + NAMES[lang]);
+      Array.prototype.forEach.call(li.querySelectorAll(".lang-opt"), function (b) {
+        b.setAttribute("aria-current", b.getAttribute("data-set-lang") === lang ? "true" : "false");
+      });
+    };
+    onLangChange.push(syncLang);
+    syncLang();
+    langBtn.addEventListener("click", function () { setLangMenu(!li.classList.contains("is-open")); });
+    li.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-set-lang]");
+      if (!b) return;
+      setLangMenu(false);
+      chooseLang(b.getAttribute("data-set-lang"));
+    });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".lang")) setLangMenu(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setLangMenu(false); });
+  }
+
+  /* Prima applicazione: la lingua l'ha già scelta lo script nell'<head> */
+  if (lang !== "it") {
+    var boot = function (ok) { applyLang(ok ? lang : "it"); };
+    loadLang(lang, boot);
+    setTimeout(function () { root.classList.remove("i18n-wait"); }, 3000);   // rete lenta: mostra comunque la pagina
+  } else {
+    root.classList.remove("i18n-wait");
   }
 
   /* ---------- Intro a schermo intero (Artisti / Intrattenimento) ----------
