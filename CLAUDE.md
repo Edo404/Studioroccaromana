@@ -51,7 +51,7 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   lavanda `--lav #ced3f7` (alone del logo), testo `--ink #eceeff`, secondario `--muted #a9aed6`.
   **Un solo accento**: il rosso del logo schiarito per il fondo scuro, `--accent #ee4b3f` (testo su accento: `--on-accent`, blu notte).
   Niente verde, niente altri colori di marca.
-- **Forma**: angoli vivi (raggio 0) ovunque; eccezioni tonde: il logo, il vinile e il bottone "Contatti" della navigazione (pillola `border-radius: 50px`, stesso rosso `--accent` di "Romana", testo `--on-accent`; si applica a `a[href="contatti.html"]` in `.main-nav`). Il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
+- **Forma**: angoli vivi (raggio 0) ovunque; eccezioni tonde: il logo, il vinile e i campi e il bottone "Invia messaggio" del form contatti (input `50px`, textarea `28px`) e il bottone "Contatti" della navigazione (pillola `border-radius: 50px`, stesso rosso `--accent` di "Romana", testo `--on-accent`; si applica a `a[href="contatti.html"]` in `.main-nav`). Il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
 - **Tipografia**: Bricolage Grotesque. Titoli display = peso 800, `font-stretch: 75%`, maiuscolo, interlinea ~.85 (classi nell'elenco in cima a `main.css`).
 - **Home ("il disco sul piatto")**: `.hero` = `h1` gigante a sinistra ("Romana" in accento) + un **vinile** (`.vinyl`, solo CSS) tagliato dal bordo
   destro che gira lento (24 s) con il **logo originale come etichetta** (`img/logo.webp`, non modificarlo né ritagliarlo) + due **copertine di vinile**
