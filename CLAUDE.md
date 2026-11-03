@@ -23,7 +23,7 @@ e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Re
 - `img/` — tutte le immagini, in **WebP** (foto artisti 800×800, sfondi 2400px + versione `-sm` 1100px).
 - **Cache busting**: nei 21 HTML i link sono `css/main.css?v=AAAAMMGG` e `js/main.js?v=AAAAMMGG`.
   Quando modifichi CSS o JS aggiorna la data in tutte le pagine, altrimenti i visitatori vedono la versione in cache.
-- `fonts/` — Bricolage Grotesque variabile (peso 300–800, larghezza 75–100%) **ospitato in locale**: non reintrodurre Google Fonts (GDPR). `unbounded-latin.woff2` = Unbounded (peso 600–900), usato solo per il titolo della home e per "1986".
+- `fonts/` — Bricolage Grotesque variabile (peso 300–800, larghezza 75–100%) **ospitato in locale**: non reintrodurre Google Fonts (GDPR). `unbounded-latin.woff2` = Unbounded (peso 600–900), usato per **tutti i titoli display** (`--font-display`).
 - Lingua del sito e dei commenti nel codice: **italiano**.
 
 ## Pagine
@@ -52,7 +52,7 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   **Un solo accento**: il rosso del logo schiarito per il fondo scuro, `--accent #ee4b3f` (testo su accento: `--on-accent`, blu notte).
   Niente verde, niente altri colori di marca.
 - **Forma**: angoli vivi (raggio 0) ovunque; eccezioni tonde: il logo, il vinile e i campi e il bottone "Invia messaggio" del form contatti (input `50px`, textarea `28px`) e il bottone "Contatti" della navigazione (pillola `border-radius: 50px`, stesso rosso `--accent` di "Romana", testo `--on-accent`; si applica a `a[href="contatti.html"]` in `.main-nav`). Il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
-- **Tipografia**: Bricolage Grotesque; eccezione: titolo home (`.home-title`) e `.since-year` ("1986") in Unbounded (`--font-display`). Titoli display = peso 800, `font-stretch: 75%`, maiuscolo, interlinea ~.85 (classi nell'elenco in cima a `main.css`).
+- **Tipografia**: Bricolage Grotesque; titoli, "1986", nomi artista, etichette copertine e parola dell'intro in Unbounded (`--font-display`). Titoli display = Unbounded peso 800, maiuscolo, interlinea ~1 (classi nell'elenco in cima a `main.css`; è un carattere largo: dimensioni più piccole dei vecchi condensati). Intro: `--fs` 16 (Artisti) e 8.6 (Intrattenimento).
 - **Home ("il disco sul piatto")**: `.hero` = `h1` gigante a sinistra ("Romana" in accento) + un **vinile** (`.vinyl`, solo CSS) tagliato dal bordo
   destro che gira lento (24 s) con un'**etichetta centrale a tinta unita** (`.vinyl-disc::after`; il logo compare solo nell'header) + due **copertine di vinile**
   quadrate (`.side`, una sopra l'altra e sfalsate: "Lato A" Artisti con `bg-artisti.webp`, "Lato B" Intrattenimento con `bg-intrattenimento.webp`,
