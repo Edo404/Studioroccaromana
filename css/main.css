@@ -1202,7 +1202,9 @@ html.i18n-wait body { visibility: hidden; }   /* evita il lampo dell'italiano me
   }
   .main-nav .lang-menu li { flex: none; }
   .main-nav .lang-menu li + li { border-top: 0; }
-  .lang-opt { width: auto; padding: 8px 14px 8px 8px; border: 1px solid var(--line-strong); border-radius: 50px; }
-  .lang-opt[aria-current="true"] { border-color: var(--accent); }
+  .main-nav .lang-menu { flex-direction: row; flex-wrap: nowrap; }
+  .lang-opt { width: auto; padding: 6px; border: 1px solid var(--line-strong); border-radius: 50%; }
+  .lang-opt span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }   /* solo bandiera; il nome resta per gli screen reader */
+  .lang-opt[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
   .main-nav li.lang { border-top: 0; }
 }
