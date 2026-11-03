@@ -29,7 +29,7 @@ e dichiara il tipo `.webp`, senza cui IIS risponde 404.3 a tutte le immagini. Re
 ## Pagine
 | File | Contenuto |
 |---|---|
-| `index.html` | Home: titolo gigante, due pannelli (Artisti, Intrattenimento), fascia scorrevole coi nomi |
+| `index.html` | Home: titolo + vinile col logo + due copertine (Lato A/B), "1986", cassetta delle foto degli artisti |
 | `artisti.html` | Griglia: sezioni "Musica" e "Cinema, TV e spettacolo" |
 | `intrattenimento.html` | Griglia |
 | `chisiamo.html` | Titolo gigante + testo, una sola schermata su desktop |
@@ -53,9 +53,13 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   Niente verde, niente altri colori di marca.
 - **Forma**: angoli vivi (raggio 0) ovunque; unica eccezione il logo, che resta l'originale (cerchio bianco, `img/logo.webp`, non modificarlo).
 - **Tipografia**: Bricolage Grotesque. Titoli display = peso 800, `font-stretch: 75%`, maiuscolo, interlinea ~.85 (classi nell'elenco in cima a `main.css`).
-- **Home**: `h1` gigante a sinistra ("Romana" in accento), due pannelli larghi sfalsati a destra con le foto `img/bg-artisti.webp` e
-  `img/bg-intrattenimento.webp` (1800x720, 2.5:1, foto Unsplash di palchi: blu/viola per Artisti, rosso per Intrattenimento; licenza Unsplash,
-  nessuna attribuzione richiesta), UNA sola fascia scorrevole coi nomi (non aggiungerne altre). Su mobile (≤1024px) tutto in colonna.
+- **Home ("il disco sul piatto")**: `.hero` = `h1` gigante a sinistra ("Romana" in accento) + un **vinile** (`.vinyl`, solo CSS) tagliato dal bordo
+  destro che gira lento (24 s) con il **logo originale come etichetta** (`img/logo.webp`, non modificarlo né ritagliarlo) + due **copertine** inclinate
+  (`.side`: "Lato A" Artisti con `bg-artisti.webp`, "Lato B" Intrattenimento con `bg-intrattenimento.webp`, foto Unsplash 1800x720, licenza libera).
+  All'hover il disco si ferma (`:has`) e la copertina si raddrizza. Sotto: `.since` ("1986" in accento + frase tratta da Chi siamo) e
+  `.crate` ("I nostri artisti": fila orizzontale scorrevole, `scroll-snap`, delle 12 foto di `artisti.html`; se si aggiunge un artista in
+  `artisti.html` aggiungerlo anche qui). Le sezioni `.reveal` compaiono con l'IntersectionObserver. Non c'è più la fascia scorrevole dei nomi.
+  Mobile (≤1024px): colonna unica, il vinile resta dietro/accanto al titolo.
 - **Griglie (Artisti: "Musica" e "Cinema, TV e spettacolo"; Intrattenimento)**: "artist wall" copiato da redlightmanagement.com:
   righe da **4** tessere quadrate quasi a contatto (gap 4px; 2 per riga sotto i 700px), foto a colori, **nome sempre visibile** in basso a sinistra.
   All'hover (solo `hover: hover` e ≥700px) la tessera raddoppia (`scale(2)`, il nome ha `scale(.5)` per restare uguale) restando agganciata

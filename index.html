@@ -16,10 +16,10 @@
   <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/main.css?v=20261103c">
+  <link rel="stylesheet" href="css/main.css?v=20261103d">
   <script>document.documentElement.classList.add("js")</script>
   <!-- Google Analytics viene caricato da main.js solo dopo il consenso -->
-  <script src="js/main.js?v=20261103c" defer></script>
+  <script src="js/main.js?v=20261103d" defer></script>
 </head>
 <body>
 
@@ -43,21 +43,49 @@
 </header>
 
 <main id="contenuto" class="home">
-  <div class="home-hero">
-    <h1 class="home-title"><span>Studio</span> <span>Rocca</span> <span>Romana</span></h1>
-    <p class="home-sub">Produzione artistica e musicale</p>
-  </div>
-  <nav class="home-choices" aria-label="Sezioni">
-    <a class="choice" href="artisti.html">
-      <span class="choice-img"><img src="img/bg-artisti.webp" width="1800" height="720" alt=""></span>
-      <span class="choice-label">Artisti</span>
-    </a>
-    <a class="choice" href="intrattenimento.html">
-      <span class="choice-img"><img src="img/bg-intrattenimento.webp" width="1800" height="720" alt=""></span>
-      <span class="choice-label">Intrattenimento</span>
-    </a>
-  </nav>
-  <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Edoardo De Angelis</span><span>dr.gam</span><span>Marcondiro</span><span>Gianni Davoli</span><span>Note da Oscar</span><span>Letizya</span><span>Antonella Ponziani</span><span>Monia Palmieri</span><span>Massimiliano Pazzaglia</span><span>Antonio Fiorillo</span><span>Marco Carena</span><span>Manuela Lettieri</span><span>Bella Epoca Orchestra</span><span>Spazio Vasco</span><span>Edoardo De Angelis</span><span>dr.gam</span><span>Marcondiro</span><span>Gianni Davoli</span><span>Note da Oscar</span><span>Letizya</span><span>Antonella Ponziani</span><span>Monia Palmieri</span><span>Massimiliano Pazzaglia</span><span>Antonio Fiorillo</span><span>Marco Carena</span><span>Manuela Lettieri</span><span>Bella Epoca Orchestra</span><span>Spazio Vasco</span></div></div>
+  <section class="hero">
+    <div class="hero-text">
+      <h1 class="home-title"><span>Studio</span> <span>Rocca</span> <span>Romana</span></h1>
+      <p class="home-sub">Produzione artistica e musicale</p>
+    </div>
+    <div class="vinyl" aria-hidden="true">
+      <div class="vinyl-disc"><img class="vinyl-label" src="img/logo.webp" width="240" height="240" alt=""></div>
+    </div>
+    <nav class="sides" aria-label="Sezioni">
+      <a class="side side--a" href="artisti.html">
+        <span class="side-img"><img src="img/bg-artisti.webp" width="1800" height="720" alt=""><span class="side-label">Artisti</span></span>
+        <span class="side-tag">Lato A</span>
+      </a>
+      <a class="side side--b" href="intrattenimento.html">
+        <span class="side-img"><img src="img/bg-intrattenimento.webp" width="1800" height="720" alt=""><span class="side-label">Intrattenimento</span></span>
+        <span class="side-tag">Lato B</span>
+      </a>
+    </nav>
+  </section>
+
+  <section class="since reveal">
+    <p class="since-year">1986</p>
+    <p class="since-text">Angelo De Cave eredita lo Studio Rocca Romana dal M° Carlo Rossi, uno dei più importanti parolieri e produttori della canzone italiana.</p>
+  </section>
+
+  <section class="crate reveal" aria-labelledby="crate-title">
+    <h2 class="crate-title" id="crate-title">I nostri artisti</h2>
+    <ul class="crate-list">
+      <li><a href="edodeange.html"><img src="img/edoardo-de-angelis.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Edoardo De Angelis</span></a></li>
+      <li><a href="drgam.html"><img src="img/dr-gam.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">dr.gam</span></a></li>
+      <li><a href="marcondiro.html"><img src="img/marcondiro.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Marcondiro</span></a></li>
+      <li><a href="giannidavoli.html"><img src="img/gianni-davoli.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Gianni Davoli</span></a></li>
+      <li><a href="notedaoscar.html"><img src="img/note-da-oscar.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Note da Oscar</span></a></li>
+      <li><a href="letizya.html"><img src="img/letizya.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Letizya</span></a></li>
+      <li><a href="antonellaponziani.html"><img src="img/antonella-ponziani.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Antonella Ponziani</span></a></li>
+      <li><a href="moniapalmieri.html"><img src="img/monia-palmieri.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Monia Palmieri</span></a></li>
+      <li><a href="massimilianopazza.html"><img src="img/massimiliano-pazzaglia.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Massimiliano Pazzaglia</span></a></li>
+      <li><a href="antoniofiorillo.html"><img src="img/antonio-fiorillo.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Antonio Fiorillo</span></a></li>
+      <li><a href="marcocarena.html"><img src="img/marco-carena.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Marco Carena</span></a></li>
+      <li><a href="manuelalettieri.html"><img src="img/manuela-lettieri.webp" width="800" height="800" alt="" loading="lazy" decoding="async"><span class="crate-name">Manuela Lettieri</span></a></li>
+    </ul>
+  </section>
+
   <p class="home-legal"><span>P.IVA 02061370595</span> · <a href="privacy.html">Privacy e cookie policy</a> · <button type="button" class="link-btn" data-cookie-prefs>Preferenze cookie</button></p>
 </main>
 

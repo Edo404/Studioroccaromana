@@ -57,7 +57,7 @@
   });
 
   /* ---------- Animazioni in ingresso allo scroll ---------- */
-  var targets = document.querySelectorAll(".card, .roster");
+  var targets = document.querySelectorAll(".card, .roster, .reveal");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
