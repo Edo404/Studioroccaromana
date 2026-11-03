@@ -448,6 +448,20 @@ main { flex: 1; }
   list-style: none;
 }
 .crate-list li { flex: 0 0 clamp(200px, 22vw, 320px); scroll-snap-align: start; }
+
+/* Autoscorrimento: main.js duplica le foto (copia nascosta agli screen reader)
+   e la pista scorre di metà larghezza in loop. Pausa con mouse o tastiera. */
+.crate { overflow: hidden; }
+.crate-list.is-auto {
+  width: max-content;
+  margin-left: var(--gutter);
+  padding: 0 0 24px;
+  overflow: visible;
+  scroll-snap-type: none;
+  animation: crate-run 80s linear infinite;
+}
+@media (hover: hover) { .crate:hover .crate-list.is-auto { animation-play-state: paused; } }
+.crate:focus-within .crate-list.is-auto { animation-play-state: paused; }
 .crate-list li:nth-child(even) { margin-top: clamp(16px, 3vw, 48px); }
 .crate-list a { display: block; text-decoration: none; }
 .crate-list img {
@@ -951,6 +965,7 @@ main { flex: 1; }
 @keyframes rise-in   { from { opacity: 0; transform: translateY(28px); } }
 @keyframes reveal-up { from { opacity: 0; clip-path: inset(12% 0 0 0); transform: translateY(24px); } }
 @keyframes spin      { to { transform: rotate(360deg); } }
+@keyframes crate-run { to { transform: translateX(calc(-50% - 7px)); } }   /* 7px = metà del gap tra le due serie */
 @keyframes tile-in   { from { opacity: 0; transform: translateY(40px); } }
 
 /* ==========================================================================

@@ -56,6 +56,21 @@
     for (var i = (rows - 1) * 4; i < items.length; i++) items[i].classList.add("is-last-row");
   });
 
+  /* ---------- Fila artisti in home: scorrimento automatico ----------
+     Si duplica l'elenco (copia aria-hidden, senza tab) e il CSS lo fa scorrere
+     in loop. Con "riduci animazioni" resta una fila scorrevole a mano. */
+  var crate = document.querySelector(".crate-list");
+  if (crate && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    Array.prototype.slice.call(crate.children).forEach(function (li) {
+      var copy = li.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      var a = copy.querySelector("a");
+      if (a) a.setAttribute("tabindex", "-1");
+      crate.appendChild(copy);
+    });
+    crate.classList.add("is-auto");
+  }
+
   /* ---------- Animazioni in ingresso allo scroll ---------- */
   var targets = document.querySelectorAll(".card, .roster, .reveal");
   if ("IntersectionObserver" in window) {

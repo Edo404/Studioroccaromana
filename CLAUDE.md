@@ -57,8 +57,9 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   destro che gira lento (24 s) con il **logo originale come etichetta** (`img/logo.webp`, non modificarlo né ritagliarlo) + due **copertine** inclinate
   (`.side`: "Lato A" Artisti con `bg-artisti.webp`, "Lato B" Intrattenimento con `bg-intrattenimento.webp`, foto Unsplash 1800x720, licenza libera).
   All'hover il disco si ferma (`:has`) e la copertina si raddrizza. Sotto: `.since` ("1986" in accento + frase tratta da Chi siamo) e
-  `.crate` ("I nostri artisti": fila orizzontale scorrevole, `scroll-snap`, delle 12 foto di `artisti.html`; se si aggiunge un artista in
-  `artisti.html` aggiungerlo anche qui). Le sezioni `.reveal` compaiono con l'IntersectionObserver. Non c'è più la fascia scorrevole dei nomi.
+  `.crate` ("I nostri artisti": fila delle 12 foto di `artisti.html` che **scorre da sola** in loop, ~50 px/s, pausa con mouse/tastiera;
+  `main.js` duplica gli elementi (copia `aria-hidden`) e il CSS anima `crate-run`; con `prefers-reduced-motion` resta una fila scorrevole a mano;
+  se si aggiunge un artista in `artisti.html` aggiungerlo anche qui). È l'unica striscia in movimento del sito (non aggiungerne altre). Le sezioni `.reveal` compaiono con l'IntersectionObserver. Non c'è più la fascia scorrevole dei nomi.
   Mobile (≤1024px): colonna unica, il vinile resta dietro/accanto al titolo.
 - **Griglie (Artisti: "Musica" e "Cinema, TV e spettacolo"; Intrattenimento)**: "artist wall" copiato da redlightmanagement.com:
   righe da **4** tessere quadrate quasi a contatto (gap 4px; 2 per riga sotto i 700px), foto a colori, **nome sempre visibile** in basso a sinistra.
