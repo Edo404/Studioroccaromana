@@ -16,10 +16,10 @@
   <link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/main.css?v=20261103f">
+  <link rel="stylesheet" href="css/main.css?v=20261103g">
   <script>document.documentElement.classList.add("js")</script>
   <!-- Google Analytics viene caricato da main.js solo dopo il consenso -->
-  <script src="js/main.js?v=20261103f" defer></script>
+  <script src="js/main.js?v=20261103g" defer></script>
 </head>
 <body>
 
@@ -43,20 +43,20 @@
 </header>
 
 <main id="contenuto" class="home">
-  <section class="hero">
+  <section class="hero" data-side="a">
     <div class="hero-text">
       <h1 class="home-title"><span>Studio</span> <span>Rocca</span> <span>Romana</span></h1>
       <p class="home-sub">Produzione artistica e musicale</p>
     </div>
     <div class="vinyl" aria-hidden="true">
-      <div class="vinyl-disc"><img class="vinyl-label" src="img/logo.webp" width="240" height="240" alt=""></div>
+      <div class="vinyl-flip"><div class="vinyl-disc"><img class="vinyl-label" src="img/logo.webp" width="240" height="240" alt=""></div></div>
     </div>
     <nav class="sides" aria-label="Sezioni">
-      <a class="side side--a" href="artisti.html">
+      <a class="side side--a" href="artisti.html" data-side="a">
         <span class="side-img"><img src="img/bg-artisti.webp" width="1800" height="720" alt=""><span class="side-label">Artisti</span></span>
         <span class="side-tag">Lato A</span>
       </a>
-      <a class="side side--b" href="intrattenimento.html">
+      <a class="side side--b" href="intrattenimento.html" data-side="b">
         <span class="side-img"><img src="img/bg-intrattenimento.webp" width="1800" height="720" alt=""><span class="side-label">Intrattenimento</span></span>
         <span class="side-tag">Lato B</span>
       </a>

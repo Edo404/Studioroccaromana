@@ -57,6 +57,45 @@
     for (var i = (rows - 1) * 4; i < items.length; i++) items[i].classList.add("is-last-row");
   });
 
+  /* ---------- Home: il disco si gira sul Lato A / Lato B ----------
+     Passando (o cliccando) su una copertina il vinile fa un mezzo giro e cambia
+     colore: Artisti = viola, Intrattenimento = rosso. Il colore cambia a metà
+     giro, quando il disco è di taglio. Il clic aspetta la fine del giro. */
+  var hero = document.querySelector(".hero[data-side]");
+  var flipEl = hero && hero.querySelector(".vinyl-flip");
+  if (flipEl) {
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var flipping = false, pendingSide = null, pendingGo = null;
+    var setSide = function (side, done) {
+      if (flipping) { pendingSide = side; pendingGo = done || pendingGo; return; }
+      if (hero.getAttribute("data-side") === side) { if (done) done(true); return; }
+      if (reduceMotion) { hero.setAttribute("data-side", side); if (done) done(false); return; }
+      flipping = true;
+      flipEl.classList.remove("is-flipping");
+      void flipEl.offsetWidth;                       // riavvia l'animazione
+      flipEl.classList.add("is-flipping");
+      setTimeout(function () { hero.setAttribute("data-side", side); }, 350);
+      setTimeout(function () {
+        flipEl.classList.remove("is-flipping");
+        flipping = false;
+        if (done) done(false);
+        if (pendingSide) { var s = pendingSide, g = pendingGo; pendingSide = pendingGo = null; setSide(s, g); }
+      }, 700);
+    };
+    Array.prototype.forEach.call(hero.querySelectorAll(".side[data-side]"), function (a) {
+      var side = a.getAttribute("data-side");
+      a.addEventListener("pointerenter", function (e) { if (e.pointerType !== "touch") setSide(side); });
+      a.addEventListener("focus", function () { setSide(side); });
+      a.addEventListener("click", function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        var href = a.href;
+        setSide(side, function (already) { setTimeout(function () { location.href = href; }, already ? 280 : 120); });
+      });
+    });
+    window.addEventListener("pageshow", function () { flipEl.classList.remove("is-flipping"); flipping = false; });
+  }
+
   /* ---------- Fila artisti in home: scorre da sola ed è trascinabile ----------
      Si lavora sullo scroll orizzontale nativo (dito e trackpad funzionano da soli);
      il mouse si trascina con i pointer events. L'elenco è duplicato (copia
