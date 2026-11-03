@@ -73,7 +73,7 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
   al suo angolo: colonne 1-2 crescono verso destra, 3-4 verso sinistra; le tessere dell'ultima riga (classe `is-last-row`, messa da `main.js`
   quando le righe sono ≥2) crescono verso l'alto. Le immagini delle tessere sono `loading="eager"` (con `lazy` l'ultima compariva in ritardo).
   La comparsa anima solo `.card-img`.
-- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (viola `--purple #9043a9` e bianco del logo) si chiudono sulla parola
+- **Intro a schermo intero** su `artisti.html` e `intrattenimento.html`: due metà oblique (Artisti: viola `--purple #9043a9` + bianco del logo; Intrattenimento, classe `intro--red`: `--red-intro #d22320` + bianco. Il rosso è il rosso dominante della foto schiarito dello stesso 15,7% con cui il viola è più chiaro della foto Artisti, vedi commento in `:root`) si chiudono sulla parola
   "ARTISTI" o "INTRATTENIMENTO" e poi si aprono; il taglio passa dentro le lettere, ogni metà le disegna a colori invertiti. Idea di
   wmg.com/songwriters, ma più rapida (1,5 s). Markup `.intro` subito dopo `<body>` (la grandezza della parola è `--fs` in `vh`, regolata per
   lunghezza della parola); CSS puro in fondo a `main.css`; `main.js` la chiude con clic/Esc o dopo 1,6 s. Uno script inline nell'`<head>`

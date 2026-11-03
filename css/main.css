@@ -35,6 +35,10 @@
   --blue: #17217f;             /* blu del logo: atmosfera e fondi */
   --purple: #9043a9;           /* viola del logo (jukebox): intro Artisti / Intrattenimento */
   --white: #fff;               /* bianco del logo (il cerchio) */
+  /* Intro Intrattenimento: rosso dominante della foto (#b51f1b, L 40,9%) schiarito
+     dello stesso 15,7% con cui il viola dell'intro Artisti (L 46,3%) è più chiaro
+     della sua foto (#613d8f, L 40,0%): L 47,3% -> #d22320 */
+  --red-intro: #d22320;
   --lav: #ced3f7;              /* lavanda del logo */
   --ink: #eceeff;              /* testo */
   --ink-2: #d4d8f5;            /* testo corrente */
@@ -1047,8 +1051,10 @@ main { flex: 1; }
   width: 50%;
   overflow: hidden;
 }
-.intro-half--a { left: 0;  background: var(--purple); color: var(--white);  animation: intro-a 1.5s linear both; }
-.intro-half--b { right: 0; background: var(--white);  color: var(--purple); animation: intro-b 1.5s linear both; }
+.intro { --intro-a: var(--purple); }
+.intro--red { --intro-a: var(--red-intro); }
+.intro-half--a { left: 0;  background: var(--intro-a); color: var(--white);  animation: intro-a 1.5s linear both; }
+.intro-half--b { right: 0; background: var(--white);  color: var(--intro-a); animation: intro-b 1.5s linear both; }
 .intro-word {
   position: absolute;
   top: 50%;
