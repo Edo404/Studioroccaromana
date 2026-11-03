@@ -40,8 +40,8 @@
 
   /* Palette ricavata dal logo originale: blu reale #17217f (dominante),
      rosso della scritta "Segreteria Artistica", lavanda #ced3f7 dell'alone. */
-  --bg: #080a26;               /* blu notte, derivato dal blu del logo */
-  --bg-2: #0f1340;             /* superfici rialzate (form, banner, tabelle) */
+  --bg: #000;                  /* PROVA: nero puro (prima blu notte #080a26) */
+  --bg-2: #0d0d12;             /* superfici rialzate (form, banner, tabelle) */
   --blue: #17217f;             /* blu del logo: atmosfera e fondi */
   --purple: #9043a9;           /* viola del logo (jukebox): intro Artisti / Intrattenimento */
   --white: #fff;               /* bianco del logo (il cerchio) */
@@ -49,14 +49,14 @@
      dello stesso 15,7% con cui il viola dell'intro Artisti (L 46,3%) è più chiaro
      della sua foto (#613d8f, L 40,0%): L 47,3% -> #d22320 */
   --red-intro: #d22320;
-  --lav: #ced3f7;              /* lavanda del logo */
-  --ink: #eceeff;              /* testo */
-  --ink-2: #d4d8f5;            /* testo corrente */
-  --muted: #a9aed6;            /* testo secondario */
+  --lav: #fff;                 /* lavanda del logo */
+  --ink: #fff;              /* testo */
+  --ink-2: #fff;            /* testo corrente */
+  --muted: #fff;            /* testo secondario */
   --line: rgba(206, 211, 247, .16);
   --line-strong: rgba(206, 211, 247, .5);
   --accent: #ee4b3f;           /* unico accento: il rosso del logo, schiarito per il fondo scuro */
-  --on-accent: #080a26;        /* testo su sfondo accento */
+  --on-accent: #000;        /* testo su sfondo accento */
 
   --header-h: 84px;
   --gutter: clamp(16px, 4vw, 56px);
@@ -138,13 +138,13 @@ main { flex: 1; }
 }
 .site-header.is-scrolled,
 .site-header--solid {
-  background: rgba(8, 10, 38, .92);
+  background: rgba(0, 0, 0, .92);
   border-bottom-color: var(--line);
 }
 .site-header.is-scrolled { --header-h: 68px; }
 @supports (backdrop-filter: blur(8px)) {
   .site-header.is-scrolled,
-  .site-header--solid { background: rgba(8, 10, 38, .78); backdrop-filter: blur(14px); }
+  .site-header--solid { background: rgba(0, 0, 0, .78); backdrop-filter: blur(14px); }
 }
 
 .header-inner {
@@ -288,10 +288,7 @@ main { flex: 1; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 60% 70% at 90% 0%, rgba(23, 33, 127, .6), transparent 70%),
-    radial-gradient(ellipse 40% 50% at 0% 100%, rgba(238, 75, 63, .08), transparent 70%),
-    var(--bg);
+  background: var(--bg);
 }
 
 .hero {
@@ -330,7 +327,7 @@ main { flex: 1; }
    metà giro, quando è di taglio. Lo stato è in data-side su .hero. */
 .vinyl {
   --d: clamp(560px, 128vh, 1180px);
-  --d1: #12175a; --d2: #080b2c; --d3: #0b0f3a;          /* lato A: blu notte, il colore originale del disco */
+  --d1: #26262b; --d2: #0c0c0e; --d3: #000;             /* a riposo: nero come lo sfondo */
   position: absolute;
   z-index: 0;
   top: 50%;
@@ -341,6 +338,7 @@ main { flex: 1; }
   perspective: 2400px;
   animation: page-in 1.2s .2s var(--ease) both;
 }
+.hero[data-side="a"] .vinyl { --d1: #12175a; --d2: #080b2c; --d3: #0b0f3a; }   /* lato A (hover Artisti): blu notte */
 .hero[data-side="b"] .vinyl { --d1: #d8453a; --d2: #6a1613; --d3: #2f0908; }   /* lato B: rosso del logo */
 .vinyl-flip { position: absolute; inset: 0; }
 .vinyl-flip.is-flipping { animation: disc-flip .7s linear both; }
@@ -360,7 +358,7 @@ main { flex: 1; }
     radial-gradient(closest-side, transparent 0 63%, rgba(0, 0, 0, .55) 63% 63.7%, transparent 63.7% 82%, rgba(0, 0, 0, .55) 82% 82.7%, transparent 82.7%),
     repeating-radial-gradient(closest-side, rgba(206, 211, 247, .07) 0 1px, transparent 1px 4px),
     radial-gradient(closest-side, var(--d1) 0, var(--d2) 55%, var(--d3) 100%);
-  box-shadow: 0 0 0 1px rgba(206, 211, 247, .14), 0 40px 120px rgba(2, 3, 18, .7);
+  box-shadow: 0 0 0 1px rgba(206, 211, 247, .14), 0 40px 120px rgba(0, 0, 0, .7);
   animation: spin 24s linear infinite;
 }
 .vinyl-disc::after {          /* etichetta centrale: tinta unita, senza logo */
@@ -403,7 +401,7 @@ main { flex: 1; }
   width: 100%;
   overflow: hidden;
   background: var(--bg-2);
-  box-shadow: 0 30px 70px rgba(2, 3, 18, .7);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .7);
 }
 .side-img img {
   width: 100%;
@@ -424,7 +422,7 @@ main { flex: 1; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8, 10, 38, .92), rgba(8, 10, 38, .1) 65%);
+  background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .1) 65%);
 }
 .side-label {
   position: absolute;
@@ -663,7 +661,7 @@ main { flex: 1; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8, 10, 38, .88), rgba(8, 10, 38, 0) 50%);
+  background: linear-gradient(to top, rgba(0, 0, 0, .88), rgba(0, 0, 0, 0) 50%);
 }
 .card-name {
   position: absolute;
@@ -766,9 +764,7 @@ main { flex: 1; }
    Chi siamo
    ========================================================================== */
 .about {
-  background:
-    radial-gradient(ellipse 55% 65% at 100% 0%, rgba(23, 33, 127, .7), transparent 70%),
-    var(--bg);
+  background: var(--bg);
 }
 .about .page {
   display: grid;

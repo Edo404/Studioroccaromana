@@ -86,6 +86,8 @@
       var side = a.getAttribute("data-side");
       a.addEventListener("pointerenter", function (e) { if (e.pointerType !== "touch") setSide(side); });
       a.addEventListener("focus", function () { setSide(side); });
+      a.addEventListener("pointerleave", function (e) { if (e.pointerType !== "touch") setSide("n"); });
+      a.addEventListener("blur", function () { setSide("n"); });
       a.addEventListener("click", function (e) {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
@@ -93,7 +95,7 @@
         setSide(side, function (already) { setTimeout(function () { location.href = href; }, already ? 280 : 120); });
       });
     });
-    window.addEventListener("pageshow", function () { flipEl.classList.remove("is-flipping"); flipping = false; });
+    window.addEventListener("pageshow", function () { flipEl.classList.remove("is-flipping"); flipping = false; pendingSide = pendingGo = null; hero.setAttribute("data-side", "n"); });
   }
 
   /* ---------- Fila artisti in home: scorre da sola ed è trascinabile ----------
