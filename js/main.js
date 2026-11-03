@@ -26,16 +26,15 @@
 
   /* ---------- Header compatto allo scroll ---------- */
   var header = document.querySelector(".site-header");
-  if (header) {
-    var ticking = false;
-    var update = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 40);
-      ticking = false;
-    };
-    window.addEventListener("scroll", function () {
-      if (!ticking) { ticking = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
+  if (header && "IntersectionObserver" in window) {
+    // sentinella in cima alla pagina: quando esce dalla vista l'header diventa pieno
+    var sentinel = document.createElement("div");
+    sentinel.setAttribute("aria-hidden", "true");
+    sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:40px;pointer-events:none";
+    document.body.insertBefore(sentinel, document.body.firstChild);
+    new IntersectionObserver(function (entries) {
+      header.classList.toggle("is-scrolled", !entries[0].isIntersecting);
+    }).observe(sentinel);
   }
 
   /* ---------- Animazioni in ingresso allo scroll ---------- */
