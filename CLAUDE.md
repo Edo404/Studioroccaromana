@@ -56,12 +56,12 @@ Il proprietario ha approvato una revisione radicale (3/11/2026): nuova palette, 
 - **Home ("il disco sul piatto")**: `.hero` = `h1` gigante a sinistra ("Romana" in accento) + un **vinile** (`.vinyl`, solo CSS) tagliato dal bordo
   destro che gira lento (24 s) con il **logo originale come etichetta** (`img/logo.webp`, non modificarlo né ritagliarlo) + due **copertine di vinile**
   quadrate (`.side`, una sopra l'altra e sfalsate: "Lato A" Artisti con `bg-artisti.webp`, "Lato B" Intrattenimento con `bg-intrattenimento.webp`,
-  foto Unsplash 1800x720 ritagliate al centro, licenza libera). **Il disco ha due lati**: `data-side="a"` su `.hero` = viola del logo (default),
+  foto Unsplash 1800x720 ritagliate al centro, licenza libera). **Il disco ha due lati**: `data-side="a"` su `.hero` = blu notte (default, com'era all'inizio),
   `"b"` = rosso. Passando (mouse/focus) o cliccando una copertina `main.js` fa girare il disco (`rotateY`, 0,7 s, classe `is-flipping` su
   `.vinyl-flip`) e cambia colore a metà giro (variabili `--d1/--d2/--d3` su `.vinyl`); il clic aspetta il giro e poi apre la pagina (Ctrl/Cmd+clic
   no). Con `prefers-reduced-motion` il colore cambia senza giro. Su mobile le due copertine stanno affiancate.
   All'hover il disco si ferma (`:has`) e la copertina si raddrizza. Sotto: `.since` ("1986" in accento + frase tratta da Chi siamo) e
-  `.crate` ("I nostri artisti": fila delle 12 foto di `artisti.html` che **scorre da sola** in loop (~50 px/s) ed è **trascinabile**:
+  `.crate` ("I nostri artisti": fila delle 12 foto di `artisti.html` che **scorre da sola** in loop (~65 px/s, `SPEED` in `main.js`) ed è **trascinabile**:
   dito e trackpad via scroll nativo, mouse via pointer events con `cursor: grab`; dopo un gesto riparte da sola dopo ~1,5 s, pausa con mouse sopra
   o focus. Lo fa `main.js` su `scrollLeft` (non più con animazione CSS): duplica gli elementi (copia `aria-hidden`) e riporta lo scroll di
   mezza lunghezza (`half`) per il giro senza stacchi. Con `prefers-reduced-motion` non parte: resta una fila scorrevole a mano.

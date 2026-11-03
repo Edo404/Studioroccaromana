@@ -281,12 +281,12 @@ main { flex: 1; }
 }
 
 /* Il vinile: grande, tagliato dal bordo destro. L'etichetta è il logo originale.
-   Ha due lati: Lato A viola (Artisti), Lato B rosso (Intrattenimento). Passando
+   Ha due lati: Lato A blu notte (Artisti, il colore di partenza), Lato B rosso (Intrattenimento). Passando
    o cliccando su una copertina il disco si gira (rotateY) e cambia colore a
    metà giro, quando è di taglio. Lo stato è in data-side su .hero. */
 .vinyl {
   --d: clamp(560px, 128vh, 1180px);
-  --d1: #7d3598; --d2: #3a1552; --d3: #1d0a2e;          /* lato A: viola del logo */
+  --d1: #12175a; --d2: #080b2c; --d3: #0b0f3a;          /* lato A: blu notte, il colore originale del disco */
   position: absolute;
   z-index: 0;
   top: 50%;
@@ -305,7 +305,7 @@ main { flex: 1; }
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: conic-gradient(from 20deg, transparent 0 8%, rgba(255, 255, 255, .17) 14%, transparent 22% 55%, rgba(255, 255, 255, .12) 62%, transparent 70%);
+  background: conic-gradient(from 20deg, transparent 0 8%, rgba(206, 211, 247, .17) 14%, transparent 22% 55%, rgba(206, 211, 247, .12) 62%, transparent 70%);
   pointer-events: none;
 }
 .vinyl-disc {
@@ -314,7 +314,7 @@ main { flex: 1; }
   border-radius: 50%;
   background:
     radial-gradient(closest-side, transparent 0 63%, rgba(0, 0, 0, .55) 63% 63.7%, transparent 63.7% 82%, rgba(0, 0, 0, .55) 82% 82.7%, transparent 82.7%),
-    repeating-radial-gradient(closest-side, rgba(255, 255, 255, .06) 0 1px, transparent 1px 4px),
+    repeating-radial-gradient(closest-side, rgba(206, 211, 247, .07) 0 1px, transparent 1px 4px),
     radial-gradient(closest-side, var(--d1) 0, var(--d2) 55%, var(--d3) 100%);
   box-shadow: 0 0 0 1px rgba(206, 211, 247, .14), 0 40px 120px rgba(2, 3, 18, .7);
   animation: spin 24s linear infinite;

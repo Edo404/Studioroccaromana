@@ -114,7 +114,7 @@
     crate.classList.add("is-auto");
     crate.addEventListener("dragstart", function (e) { e.preventDefault(); });
 
-    var SPEED = 50;                 // px al secondo
+    var SPEED = 65;                 // px al secondo
     var half = 0, pos = 0, last = 0, busyUntil = 0, hovering = false, down = false, moved = 0, lastX = 0, inView = true;
 
     var measure = function () {
