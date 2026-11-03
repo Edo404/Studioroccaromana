@@ -338,8 +338,8 @@ main { flex: 1; }
   perspective: 2400px;
   animation: page-in 1.2s .2s var(--ease) both;
 }
-.hero[data-side="a"] .vinyl { --d1: #12175a; --d2: #080b2c; --d3: #0b0f3a; }   /* lato A (hover Artisti): blu notte */
-.hero[data-side="b"] .vinyl { --d1: #d8453a; --d2: #6a1613; --d3: #2f0908; }   /* lato B: rosso del logo */
+.hero[data-side="a"] .vinyl { --d1: #d8453a; --d2: #6a1613; --d3: #2f0908; }   /* lato A (hover Artisti): rosso del logo */
+.hero[data-side="b"] .vinyl { --d1: #7d3598; --d2: #3a1552; --d3: #1d0a2e; }   /* lato B (hover Intrattenimento): viola del logo */
 .vinyl-flip { position: absolute; inset: 0; }
 .vinyl-flip.is-flipping { animation: disc-flip .7s linear both; }
 .vinyl-flip::after {          /* riflesso fermo: il disco gira, la luce no */
@@ -407,8 +407,7 @@ main { flex: 1; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(.85) brightness(.85);
-  transition: transform .9s var(--ease), filter .5s;
+  transition: transform .9s var(--ease);
 }
 .side-img::before {           /* l'impronta tonda del disco sulla copertina */
   content: "";
@@ -422,7 +421,7 @@ main { flex: 1; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .1) 65%);
+  background: linear-gradient(to top, rgba(0, 0, 0, .85), rgba(0, 0, 0, 0) 45%);   /* velo leggero sotto la scritta */
 }
 .side-label {
   position: absolute;
@@ -456,7 +455,7 @@ main { flex: 1; }
 }
 @media (hover: hover) {
   .side:hover, .side:focus-visible { rotate: 0deg; translate: 0 -10px; }
-  .side:hover .side-img img, .side:focus-visible .side-img img { transform: scale(1.06); filter: saturate(1.1) brightness(1); }
+  .side:hover .side-img img, .side:focus-visible .side-img img { transform: scale(1.06); }
   .side:hover .side-label::after, .side:focus-visible .side-label::after { transform: translateX(10px); }
   .hero:has(.side:hover) .vinyl-disc,
   .hero:has(.side:focus-visible) .vinyl-disc { animation-play-state: paused; }
